@@ -57,6 +57,16 @@ body {
     env(safe-area-inset-left);
 }
 
+/* Fond opaque sous la barre d'état Android : le contenu qui défile ne passe pas dessous. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top);
+  background: var(--bg);
+  z-index: 10;
+}
+
 button,
 input,
 textarea,

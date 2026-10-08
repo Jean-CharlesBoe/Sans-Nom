@@ -13,6 +13,8 @@ Langue du projet : **français** (UI, docs, messages de commit). Code (identifia
 | [docs/QUESTIONS.md](docs/QUESTIONS.md) | Questions ouvertes à poser à l'utilisateur, et réponses obtenues |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Journal des décisions (techno, règles, UX), avec leur justification |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Étapes du développement et journal des sessions |
+| [docs/INSTALLATION.md](docs/INSTALLATION.md) | Notice pour les joueurs : installer, mettre à jour, sauvegarder, utiliser |
+| [docs/ICONE.md](docs/ICONE.md) | Icône de l'app : ce qu'il faut fournir et comment l'intégrer (en attente du dessin) |
 | [docs/RELEASE.md](docs/RELEASE.md) | Dev local, test sur téléphone, clé de signature, publication d'une version, installation |
 | [docs/ANALYSE_V0.md](docs/ANALYSE_V0.md) | Analyse de la version HTML existante (`fiche-perso.html`) |
 | [docs/ANALYSE_FICHE_ELOY.md](docs/ANALYSE_FICHE_ELOY.md) | Analyse de la vraie fiche Google Sheet de l'utilisateur (4 ans de jeu) : besoins réels. **Local, hors dépôt** (gitignore) |

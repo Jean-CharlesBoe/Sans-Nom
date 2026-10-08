@@ -11,7 +11,7 @@
 | 4 | Compétences | Cartes repliables, coût en mana, ajout / édition / tri | fait |
 | 5 | Invocations | Liste + fiche créature (caracs, Vie, PP, compétences en PP) | fait |
 | 6 | Sauvegarde | Export JSON via feuille de partage Android, import, rappel de sauvegarde, vérification du backup Android, test de mise à jour par-dessus une version précédente | fait (sauf vérifs sur appareil) |
-| 7 | Finitions | Mode sombre, tests sur les téléphones des joueurs, première Release publique de l'APK + notice d'installation | à faire |
+| 7 | Finitions | Mode sombre, tests sur les téléphones des joueurs, première Release publique de l'APK + notice d'installation, icône | en cours |
 
 ## Journal des sessions
 
@@ -37,4 +37,6 @@
 - **v0.2.0 publiée** (3 onglets complets), signée avec la clé officielle (vérifié).
 - Étape 6 faite : `src/lib/backup/` (format + tests, partage Android), `BackupPanel` à l'accueil (sauvegarder, importer avec choix par fiche, rappel), méta `last_backup_at`, version de l'app affichée (`__APP_VERSION__`). Décisions en D8, procédure utilisateur dans RELEASE.md. 31 tests verts ; aller-retour sauvegarde → import vérifié dans le navigateur.
 - À vérifier sur le téléphone de l'utilisateur : partage réel vers Drive, import depuis Drive, installation de v0.2.0 / v0.3.0 par-dessus la précédente sans perte. Backup Google non vérifiable sans câble (documenté).
-- Prochaine étape : étape 7 (finitions, tests chez les joueurs, notice d'installation).
+- **v0.3.0 publiée** (sauvegarde), signée avec la clé officielle (vérifié) ; notes d'installation ajoutées à sa page.
+- Étape 7 commencée : notice joueurs (docs/INSTALLATION.md), README du dépôt, notes d'installation automatiques sur chaque Release (`.github/release-notes.md`), en-tête fixe maintenu sous la barre d'état Android (fond opaque `body::before`), procédure icône (docs/ICONE.md).
+- En attente : icône (dessinée par la compagne de l'utilisateur) ; retours de l'utilisateur sur v0.3.0 (mise à jour par-dessus v0.2.0, sauvegarde vers Drive, import) ; tests chez les autres joueurs.

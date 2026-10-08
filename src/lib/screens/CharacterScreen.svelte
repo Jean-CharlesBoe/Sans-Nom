@@ -133,7 +133,7 @@
 <style>
   header {
     position: sticky;
-    top: 0;
+    top: env(safe-area-inset-top);
     z-index: 2;
     display: flex;
     align-items: center;
