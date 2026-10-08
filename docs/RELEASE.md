@@ -23,27 +23,62 @@ npm run android:sync   # build web + copie dans le projet Android
 npm run android:open   # ouvre Android Studio → bouton ▶ « Run » avec le téléphone branché
 ```
 
+## Tester sans câble USB
+
+### Option 1 : installer l'APK de debug depuis le téléphone
+1. Sur le téléphone, ouvrir le navigateur et **se connecter à GitHub** (les artefacts des Actions ne se téléchargent que connecté).
+2. Ouvrir l'onglet **Actions** du dépôt → le dernier run vert « Android » → section **Artifacts** → `sansnom-debug-apk` (fichier `.zip`).
+3. Ouvrir le zip avec l'app **Fichiers** (Files by Google) → **Extraire** → on obtient `app-debug.apk`.
+4. Taper sur `app-debug.apk` → autoriser l'installation pour l'app Fichiers (« sources inconnues ») → **Installer**. Si Play Protect avertit d'une app inconnue : « Plus d'infos » → « Installer quand même ».
+
+Chaque run CI signe le debug avec une clé de debug différente : pour installer un debug plus récent, **désinstaller l'ancien d'abord** (les données de test sont perdues, c'est normal).
+
+### Option 2 : débogage sans fil (Android 11+, même Wi-Fi que le PC)
+Prérequis : premier lancement d'Android Studio fait (SDK installé).
+1. Téléphone : activer les Options pour les développeurs (7 taps sur « Numéro de build »), puis **Débogage sans fil**.
+2. Android Studio : `npm run android:open` → menu des appareils (en haut) → **Pair Devices Using Wi-Fi** → scanner le QR code depuis le téléphone (Débogage sans fil → « Associer l'appareil avec un code QR »).
+3. Choisir le téléphone dans la liste → bouton ▶ **Run**.
+
+### Option 3 : émulateur Android sur le PC
+Android Studio → **Device Manager** → **Create Virtual Device** (ex. Pixel, dernière image système) → `npm run android:open` → choisir l'émulateur → ▶ **Run**. Suffisant pour tester SQLite ; nécessite la virtualisation activée sur le PC.
+
+### Que vérifier
+- Créer un personnage, revenir à la liste (flèche et bouton retour Android).
+- **Fermer complètement l'app** (balayer dans les apps récentes), la rouvrir : le personnage doit être toujours là → SQLite fonctionne.
+- Supprimer (deux taps : « Supprimer » puis « Confirmer »).
+- Passer le téléphone en thème sombre : l'app suit.
+
+⚠️ Avant d'installer la première **vraie** version (release signée), désinstaller l'app de debug.
+
 ## Clé de signature (une seule fois, par le propriétaire du dépôt)
 
 La clé signe chaque APK. **Toutes les versions doivent être signées avec la même clé**, sinon Android refuse la mise à jour et il faut désinstaller (= perte des données). Elle doit donc être conservée précieusement **hors de GitHub aussi** (gestionnaire de mots de passe, clé USB…).
 
-1. Générer la clé (dans un dossier **hors du dépôt**) :
-   ```bash
-   "/c/Program Files/Android/Android Studio/jbr/bin/keytool.exe" -genkeypair -v -keystore sansnom-release.jks -alias sansnom -keyalg RSA -keysize 4096 -validity 36500
+Commandes pour **PowerShell** (terminal par défaut sous Windows).
+
+1. Créer un dossier **hors du dépôt** et s'y placer :
+   ```powershell
+   New-Item -ItemType Directory -Force "$HOME\Documents\SansNom-cle"; Set-Location "$HOME\Documents\SansNom-cle"
    ```
-   L'outil demande un mot de passe et quelques informations (nom, ville… facultatif).
-2. Encoder la clé en base64 pour GitHub :
-   ```bash
-   base64 -w0 sansnom-release.jks > sansnom-release.jks.b64
+2. Générer la clé (l'outil demande un mot de passe, puis des infos facultatives) :
+   ```powershell
+   & "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -genkeypair -v -keystore sansnom-release.jks -alias sansnom -keyalg RSA -keysize 4096 -validity 36500
    ```
-3. Sur GitHub : dépôt → Settings → Secrets and variables → Actions → **New repository secret**, créer :
+3. Envoyer les secrets à GitHub avec `gh` (les commandes sans `--body` demandent la valeur au clavier) :
+   ```powershell
+   [Convert]::ToBase64String([IO.File]::ReadAllBytes("$PWD\sansnom-release.jks")) | gh secret set ANDROID_KEYSTORE_BASE64 --repo Jean-CharlesBoe/Sans-Nom
+   gh secret set ANDROID_KEYSTORE_PASSWORD --repo Jean-CharlesBoe/Sans-Nom
+   gh secret set ANDROID_KEY_PASSWORD --repo Jean-CharlesBoe/Sans-Nom
+   gh secret set ANDROID_KEY_ALIAS --body sansnom --repo Jean-CharlesBoe/Sans-Nom
+   gh secret list --repo Jean-CharlesBoe/Sans-Nom
+   ```
    | Secret | Valeur |
    |---|---|
-   | `ANDROID_KEYSTORE_BASE64` | contenu du fichier `.b64` |
+   | `ANDROID_KEYSTORE_BASE64` | la clé encodée en base64 |
    | `ANDROID_KEYSTORE_PASSWORD` | mot de passe du keystore |
    | `ANDROID_KEY_ALIAS` | `sansnom` |
    | `ANDROID_KEY_PASSWORD` | mot de passe de la clé (le même par défaut) |
-4. Supprimer le fichier `.b64`, garder le `.jks` et le mot de passe en lieu sûr.
+4. Copier `sansnom-release.jks` en lieu sûr (clé USB, Drive perso, gestionnaire de mots de passe) et garder le mot de passe à part.
 
 Pour signer en local (facultatif) : créer `android/keystore.properties` (ignoré par git) :
 ```properties

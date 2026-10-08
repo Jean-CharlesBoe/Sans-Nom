@@ -26,4 +26,6 @@
 - Étape 1 codée : Vite/TS/Svelte 5, Capacitor 8 + projet `android/`, modèle `Character`, repository SQLite (migrations via table `meta`) + repli localStorage en dev, écrans liste (créer / ouvrir / supprimer en 2 temps) et fiche (onglets vides), bouton retour Android, mode sombre, workflow GitHub Actions (APK debug / release signé sur tag), docs/RELEASE.md. `npm run check`, `npm test` et le parcours créer → ouvrir → retour → supprimer vérifiés dans le navigateur.
 - Non vérifié : build Gradle et SQLite sur appareil (SDK Android pas encore installé : premier lancement d'Android Studio à faire par l'utilisateur).
 - Dépôt public créé : https://github.com/Jean-CharlesBoe/Sans-Nom (fiche-perso.html et ANALYSE_FICHE_ELOY.md exclus via .gitignore). Premier run CI vert : APK de debug produit (artefact `sansnom-debug-apk`).
-- Prochaine étape : clé de signature + secrets (utilisateur), tester l'APK debug sur un téléphone (SQLite réel) ; puis étape 2 (module de règles).
+- APK de debug testé par l'utilisateur sur son téléphone (installé sans câble, via l'artefact) : fonctionne.
+- Clé de signature : procédure PowerShell + `gh secret set` ajoutée dans RELEASE.md ; génération en cours côté utilisateur.
+- Prochaine étape : vérifier les 4 secrets, publier v0.1.0 (premier APK signé) ; puis étape 2 (module de règles).
