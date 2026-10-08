@@ -1,4 +1,5 @@
 import type { Character, CharacterSummary } from '../model/character'
+import { normalizeCharacter } from '../rules/normalize'
 import type { CharacterRepository } from './repository'
 
 // Stockage de développement uniquement (navigateur du PC) : sur téléphone, c'est SQLite.
@@ -24,7 +25,8 @@ export function createWebRepository(): CharacterRepository {
         .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
     },
     async get(id) {
-      return readAll()[id] ?? null
+      const raw = readAll()[id]
+      return raw ? normalizeCharacter(raw).character : null
     },
     async save(c) {
       const all = readAll()

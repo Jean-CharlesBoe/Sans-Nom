@@ -1,12 +1,12 @@
 # Roadmap
 
-Étape en cours : **2 — Module de règles**
+Étape en cours : **3 — Écran Carac**
 
 | # | Étape | Contenu | Statut |
 |---|---|---|---|
 | 0 | Cadrage | Docs, questions/réponses, décisions D1–D6 | fait |
 | 1 | Socle | Init git + dépôt GitHub, Vite/TS/Svelte, Capacitor Android, SQLite + couche repository (avec repli web pour le dev), écran liste des personnages, build APK signé par GitHub Actions | fait (v0.1.0) |
-| 2 | Module de règles | Caracs, avantages, bonus temporaires, ressources bornées, XP ; tests Vitest | à faire |
+| 2 | Module de règles | Caracs, avantages, bonus temporaires, ressources bornées, XP ; tests Vitest | fait |
 | 3 | Écran Carac | Identité, grille des 8 caracs, bonus temporaires, losanges + régénération, XP, équipement, inventaire, modes jeu/édition | à faire |
 | 4 | Compétences | Cartes repliables, coût en mana, ajout / édition / tri | à faire |
 | 5 | Invocations | Liste + fiche créature (caracs, Vie, PP, compétences en PP) | à faire |
@@ -29,4 +29,6 @@
 - APK de debug testé par l'utilisateur sur son téléphone (installé sans câble, via l'artefact) : fonctionne.
 - Clé de signature : procédure PowerShell + `gh secret set` ajoutée dans RELEASE.md ; génération en cours côté utilisateur.
 - 4 secrets configurés. **v0.1.0 publiée** : https://github.com/Jean-CharlesBoe/Sans-Nom/releases/tag/v0.1.0 — APK signé v2 avec la clé officielle (empreinte dans RELEASE.md), vérifié avec apksigner.
-- Prochaine étape : étape 2 (module de règles).
+- Étape 2 faite : `src/lib/rules/` (caracs sans plafond de jeu, avantages signés, bonus temporaires, ressources 0..max, Nain sans mana sans perte de valeurs, pratiques multiples sans doublon, XP, compétences/créatures, `normalizeCharacter` branché au chargement). 22 tests verts.
+- Choix d'implémentation : changer de race ne supprime ni l'élément ni le mana (simplement masqués), pour qu'une erreur de sélection soit sans conséquence.
+- Prochaine étape : étape 3 (écran Carac, croquis 3).

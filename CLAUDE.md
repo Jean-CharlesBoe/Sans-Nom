@@ -36,6 +36,14 @@ App web (Vite + TypeScript + Svelte 5) emballée en app Android par Capacitor. D
 src/
   App.svelte                     navigation (liste ↔ fiche), bouton retour Android
   lib/model/character.ts         types, listes (caracs, races, pratiques), fabriques
+  lib/rules/                     règles du jeu (fonctions pures ou mutations, testées) :
+    numbers.ts                   bornes de saisie (LIMITS), clampInt, parseIntInput
+    stats.ts                     caracs, avantages, bonus temporaires, valeur finale
+    resources.ts                 ressources bornées 0..max, régénération, hasMana (Nain)
+    identity.ts                  race, élément, pratiques
+    xp.ts                        compteur d'XP + rappel de règle
+    lists.ts                     compétences, créatures, réordonnancement
+    normalize.ts                 validation/réparation d'un personnage chargé ou importé
   lib/storage/repository.ts      contrat CharacterRepository + choix de l'implémentation
   lib/storage/sqliteRepository.ts  SQLite (Android) + migrations du schéma
   lib/storage/webRepository.ts   repli localStorage pour `npm run dev` uniquement
@@ -45,6 +53,8 @@ android/                         projet Android généré par Capacitor (version
 ```
 
 - Les composants n'appellent jamais SQLite : toujours `getRepository()`.
+- Toute règle de jeu passe par `src/lib/rules/` : les composants ne bornent ni ne calculent eux-mêmes. Les fonctions de règles **modifient l'objet reçu** (compatible avec les proxys `$state` de Svelte) et renvoient la valeur retenue.
+- Tout personnage lu (base ou import) passe par `normalizeCharacter`.
 - Avant d'enregistrer un état Svelte (`$state`), passer par `$state.snapshot()` : les proxys ne se sérialisent pas tous proprement.
 - `appId` (`fr.sansnom.fiche`) et la clé de signature sont **définitifs** : les changer empêche la mise à jour des apps installées.
 

@@ -1,5 +1,6 @@
 import { CapacitorSQLite, SQLiteConnection, type SQLiteDBConnection } from '@capacitor-community/sqlite'
-import type { Character, CharacterSummary } from '../model/character'
+import type { CharacterSummary } from '../model/character'
+import { normalizeCharacter } from '../rules/normalize'
 import type { CharacterRepository } from './repository'
 
 const DB_NAME = 'sansnom'
@@ -53,7 +54,10 @@ export async function openSqliteRepository(): Promise<CharacterRepository> {
     },
     async get(id) {
       const r = await db.query(`SELECT data FROM characters WHERE id = ?`, [id])
-      return r.values?.length ? (JSON.parse(r.values[0].data) as Character) : null
+      if (!r.values?.length) return null
+      const { character, warnings } = normalizeCharacter(JSON.parse(r.values[0].data))
+      if (warnings.length) console.warn('[sansnom] corrections au chargement', warnings)
+      return character
     },
     async save(c) {
       await db.run(
