@@ -118,3 +118,15 @@ Le numéro de version interne (`versionCode`) est calculé à partir du tag (`X*
 3. Installer. Pour une mise à jour, refaire la même chose : la nouvelle version s'installe **par-dessus** et garde les données.
 
 ⚠️ Ne pas installer un APK de **debug** puis un APK de **release** (ou l'inverse) : signatures différentes → il faudrait désinstaller.
+
+## Sauvegarder ses personnages / changer de téléphone
+
+Les fiches sont dans l'app (SQLite). Elles survivent aux mises à jour, mais **pas à une désinstallation** ni à la perte du téléphone. La vraie protection est le fichier de sauvegarde :
+
+1. Accueil → carte **Sauvegarde** → **Sauvegarder** : la feuille de partage Android s'ouvre → choisir **Drive** (ou s'envoyer le fichier par mail / WhatsApp). Le fichier `sansnom-sauvegarde-AAAA-MM-JJ.json` contient **tous** les personnages avec leurs créatures.
+2. Sur le nouveau téléphone (ou après réinstallation) : installer l'app → **Importer** → choisir le fichier. Pour une fiche déjà présente : « Remplacer », « Garder les deux » ou « Ignorer ».
+
+L'accueil affiche la date de la dernière sauvegarde et passe en rouge s'il y a eu des modifications et plus de 7 jours sans sauvegarde.
+
+**Sauvegarde Google d'Android** : l'app autorise la sauvegarde automatique (`allowBackup`), qui inclut la base SQLite si la sauvegarde Google est activée sur le téléphone (Paramètres → Google → Sauvegarde). Elle est restaurée quand on installe l'app sur un nouveau téléphone lié au même compte. Son déclenchement dépend d'Android (téléphone en charge, Wi-Fi, au plus une fois par jour) et n'a pas pu être vérifié sans câble : **ne pas compter dessus à la place du fichier**.
+

@@ -38,5 +38,11 @@ export function createWebRepository(): CharacterRepository {
       delete all[id]
       writeAll(all)
     },
+    async getMeta(key) {
+      return localStorage.getItem(`sansnom:dev:meta:${key}`)
+    },
+    async setMeta(key, value) {
+      localStorage.setItem(`sansnom:dev:meta:${key}`, value)
+    },
   }
 }

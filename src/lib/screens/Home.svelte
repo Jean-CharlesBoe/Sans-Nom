@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import BackupPanel from '../components/BackupPanel.svelte'
   import { createCharacter, type CharacterSummary } from '../model/character'
   import { getRepository } from '../storage/repository'
 
@@ -93,6 +94,14 @@
       {/each}
     </ul>
   {/if}
+
+  {#if !loading}
+    <div class="backup">
+      <BackupPanel {characters} onImported={refresh} />
+    </div>
+  {/if}
+
+  <p class="version">Sans Nom v{__APP_VERSION__}</p>
 </main>
 
 <style>
@@ -151,11 +160,13 @@
   .error {
     color: var(--danger);
   }
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
+  .backup {
+    margin-top: 28px;
+  }
+  .version {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
   }
 </style>

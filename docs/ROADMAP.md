@@ -1,6 +1,6 @@
 # Roadmap
 
-Étape en cours : **6 — Sauvegarde**
+Étape en cours : **7 — Finitions**
 
 | # | Étape | Contenu | Statut |
 |---|---|---|---|
@@ -10,7 +10,7 @@
 | 3 | Écran Carac | Identité, grille des 8 caracs, bonus temporaires, losanges + régénération, XP, équipement, inventaire, modes jeu/édition | fait |
 | 4 | Compétences | Cartes repliables, coût en mana, ajout / édition / tri | fait |
 | 5 | Invocations | Liste + fiche créature (caracs, Vie, PP, compétences en PP) | fait |
-| 6 | Sauvegarde | Export JSON via feuille de partage Android, import, rappel de sauvegarde, vérification du backup Android, test de mise à jour par-dessus une version précédente | à faire |
+| 6 | Sauvegarde | Export JSON via feuille de partage Android, import, rappel de sauvegarde, vérification du backup Android, test de mise à jour par-dessus une version précédente | fait (sauf vérifs sur appareil) |
 | 7 | Finitions | Mode sombre, tests sur les téléphones des joueurs, première Release publique de l'APK + notice d'installation | à faire |
 
 ## Journal des sessions
@@ -34,4 +34,7 @@
 - Étape 3 faite : onglet Carac (identité, grille 3+3+2, bonus temporaires, losanges Vie/Âme/Mana avec fenêtre de dépense, régénération, XP, équipement, inventaire), mode jeu / édition (crayon), sauvegarde automatique, pile du bouton retour Android (`src/lib/ui/back.ts`), composants réutilisables pour les créatures (StatGrid, ResourceDiamond, TempBonuses). Choix d'interface consignés en D7. Vérifié dans le navigateur au format téléphone (dont rechargement et cas du Nain).
 - Étape 4 faite : `SkillList` (réutilisable, unité et couleur du coût en paramètre) — mode jeu : cartes repliées (titre, pastille de coût, 1re ligne en aperçu), dépliage individuel ou « Tout déplier » ; mode édition : titre, coût (vide = pas de coût), description, ↑ ↓, suppression en 2 temps, ajout avec focus sur le titre. Vérifié dans le navigateur.
 - Étape 5 faite : `InvocationsTab` (liste avec résumé Vie/PP, « + Ajouter » en mode jeu comme en édition, ↑ ↓ en édition, bouton retour Android → liste) et `CreatureView` (type avec suggestions Animal totem / Invocation / Animal de compagnie, race libre, StatGrid, bonus temporaires, losanges Vie/PP, équipement, inventaire, compétences en PP, suppression en 2 temps). Vérifié dans le navigateur, y compris après rechargement.
-- Prochaine étape : étape 6 (export/import JSON via la feuille de partage, rappel de sauvegarde, backup Android, mise à jour par-dessus une version).
+- **v0.2.0 publiée** (3 onglets complets), signée avec la clé officielle (vérifié).
+- Étape 6 faite : `src/lib/backup/` (format + tests, partage Android), `BackupPanel` à l'accueil (sauvegarder, importer avec choix par fiche, rappel), méta `last_backup_at`, version de l'app affichée (`__APP_VERSION__`). Décisions en D8, procédure utilisateur dans RELEASE.md. 31 tests verts ; aller-retour sauvegarde → import vérifié dans le navigateur.
+- À vérifier sur le téléphone de l'utilisateur : partage réel vers Drive, import depuis Drive, installation de v0.2.0 / v0.3.0 par-dessus la précédente sans perte. Backup Google non vérifiable sans câble (documenté).
+- Prochaine étape : étape 7 (finitions, tests chez les joueurs, notice d'installation).

@@ -54,3 +54,10 @@ Les noms de variables/fichiers en anglais (`character`, `stats`), les textes aff
 - **Caracs** : en mode jeu, le cercle affiche la valeur finale (verte avec un bonus, rouge avec un malus), avec une pastille d'avantages (+N vert, −N rouge) ; un tap ouvre le détail (valeur, bonus, total). En mode édition, le cercle (pointillé) affiche la valeur de base avec + / − et la ligne « Av. − n + ».
 - **Sauvegarde automatique** 400 ms après chaque modification, immédiate au retour à la liste et quand l'app passe en arrière-plan.
 - Bouton retour Android : ferme d'abord la fenêtre ouverte, puis revient à la liste, puis quitte.
+
+## D8 · 2026-10-08 · Sauvegarde par fichier — *proposée*
+- Un seul fichier JSON (`format: "sansnom-sauvegarde"`, `version: 1`) contenant **tous** les personnages complets : un seul geste pour tout mettre à l'abri, et un seul fichier à retrouver lors d'un changement de téléphone.
+- Envoi par la feuille de partage Android (`@capacitor/share`, fichier écrit dans le cache par `@capacitor/filesystem`) ; téléchargement classique dans le navigateur en dev.
+- La date de dernière sauvegarde est notée (table `meta`) quand le partage aboutit (annulation = pas notée). Rappel rouge à l'accueil si modifications et ≥ 7 jours.
+- Import : chaque personnage passe par `normalizeCharacter` ; pour un identifiant déjà présent, choix Remplacer / Garder les deux (copie avec nouvel identifiant) / Ignorer. Un fichier d'une version de format plus récente est refusé avec un message.
+- Pas d'import du format de la v0 (`fiche-perso.html`) : pas de besoin exprimé.

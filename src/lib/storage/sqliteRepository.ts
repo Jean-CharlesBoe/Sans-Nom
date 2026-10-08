@@ -69,5 +69,15 @@ export async function openSqliteRepository(): Promise<CharacterRepository> {
     async remove(id) {
       await db.run(`DELETE FROM characters WHERE id = ?`, [id])
     },
+    async getMeta(key) {
+      const r = await db.query(`SELECT value FROM meta WHERE key = ?`, [key])
+      return r.values?.length ? String(r.values[0].value) : null
+    },
+    async setMeta(key, value) {
+      await db.run(
+        `INSERT INTO meta (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value`,
+        [key, value],
+      )
+    },
   }
 }

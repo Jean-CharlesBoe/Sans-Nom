@@ -9,7 +9,12 @@ export interface CharacterRepository {
   get(id: string): Promise<Character | null>
   save(character: Character): Promise<void>
   remove(id: string): Promise<void>
+  /** Petites valeurs de fonctionnement (ex. date de dernière sauvegarde). */
+  getMeta(key: string): Promise<string | null>
+  setMeta(key: string, value: string): Promise<void>
 }
+
+export const META_LAST_BACKUP = 'last_backup_at'
 
 let instance: Promise<CharacterRepository> | null = null
 
