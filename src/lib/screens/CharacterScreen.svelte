@@ -6,6 +6,7 @@
   import { getRepository } from '../storage/repository'
   import SkillList from '../components/SkillList.svelte'
   import CaracTab from './CaracTab.svelte'
+  import InvocationsTab from './InvocationsTab.svelte'
 
   let { id, onBack }: { id: string; onBack: () => void } = $props()
 
@@ -124,8 +125,7 @@
     {:else if tab === 'competences'}
       <SkillList owner={character} {editing} unit="mana" />
     {:else}
-      <!-- Étape 5 de la roadmap -->
-      <p class="muted">Onglet « {TABS.find(t => t[0] === tab)?.[1]} » à venir.</p>
+      <InvocationsTab {character} {editing} />
     {/if}
   {/if}
 </main>
@@ -199,9 +199,6 @@
     max-width: 560px;
     margin: 0 auto;
     padding: 16px 16px 48px;
-  }
-  .muted {
-    color: var(--muted);
   }
   .error {
     color: var(--danger);
