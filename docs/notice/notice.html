@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Sans Nom — Notice de l'application</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 16mm; }
+  :root { --accent: #8a5a00; --text: #1c1b19; --muted: #6b6963; --line: #d9d6cf; --soft: #f6f5f1; --vie: #c0392b; --ame: #7b4fb8; --mana: #2a6fd6; --pp: #c77d12; --up: #1f7a45; --down: #b3261e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 10.5pt; line-height: 1.45; color: var(--text); }
+  h1 { font-size: 30pt; margin: 0; letter-spacing: .01em; }
+  h2 { font-size: 17pt; margin: 0 0 4mm; padding-bottom: 2mm; border-bottom: 2px solid var(--accent); color: var(--accent); }
+  h3 { font-size: 12pt; margin: 5mm 0 1.5mm; }
+  p { margin: 0 0 2.5mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+  li { margin-bottom: 1.2mm; }
+  .page { page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  .row { display: flex; gap: 7mm; align-items: flex-start; }
+  .row .text { flex: 1; min-width: 0; }
+  .shots { display: flex; gap: 5mm; justify-content: center; margin: 3mm 0; }
+  figure { margin: 0; text-align: center; break-inside: avoid; }
+  figure img { width: 52mm; border: 1.5px solid #bdb9b0; border-radius: 4mm; display: block; }
+  .shots.small figure img { width: 46mm; }
+  figcaption { font-size: 8.5pt; color: var(--muted); margin-top: 1.5mm; max-width: 52mm; }
+  .tip { background: var(--soft); border-left: 4px solid var(--accent); padding: 2.5mm 4mm; border-radius: 0 2mm 2mm 0; margin: 3mm 0; }
+  .warn { background: #fdf0ef; border-left: 4px solid var(--down); padding: 2.5mm 4mm; border-radius: 0 2mm 2mm 0; margin: 3mm 0; }
+  .kbd { display: inline-block; padding: 0 2mm; border: 1px solid var(--line); border-radius: 1.5mm; background: #fff; font-weight: 600; }
+  .cover { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 18mm; }
+  .cover .sub { font-size: 14pt; color: var(--muted); margin: 2mm 0 10mm; }
+  .cover figure img { width: 62mm; }
+  .toc { margin-top: 10mm; text-align: left; font-size: 11pt; }
+  .toc ol { padding-left: 6mm; }
+  .tag { font-weight: 600; }
+  .vie { color: var(--vie); } .ame { color: var(--ame); } .mana { color: var(--mana); } .pp { color: var(--pp); } .up { color: var(--up); } .down { color: var(--down); }
+  table { border-collapse: collapse; width: 100%; margin: 2mm 0 3mm; font-size: 10pt; }
+  td, th { border: 1px solid var(--line); padding: 1.5mm 2.5mm; text-align: left; vertical-align: top; }
+  th { background: var(--soft); }
+  .footer-note { font-size: 8.5pt; color: var(--muted); margin-top: 6mm; }
+</style>
+</head>
+<body>
+
+<!-- Couverture -->
+<section class="page cover">
+  <h1>Sans Nom</h1>
+  <p class="sub">Notice de l'application « fiche de personnage »</p>
+  <figure><img src="img/02-carac-jeu.jpg" alt="Fiche d'un personnage"></figure>
+  <div class="toc">
+    <ol>
+      <li>Installer et mettre à jour l'app</li>
+      <li>L'écran d'accueil</li>
+      <li>La fiche : onglet Carac</li>
+      <li>Pendant la partie : ressources, bonus, détails</li>
+      <li>Le mode édition</li>
+      <li>L'onglet Compétences</li>
+      <li>L'onglet Invocations</li>
+      <li>Sauvegarder et retrouver ses fiches</li>
+    </ol>
+  </div>
+  <p class="footer-note">Les captures montrent un personnage d'exemple, « Aldric le Veilleur ».</p>
+</section>
+
+<!-- 1. Installation -->
+<section class="page">
+  <h2>1. Installer et mettre à jour l'app</h2>
+  <p>L'app n'est pas sur le Play Store : on l'installe à partir d'un fichier <b>.apk</b> téléchargé sur GitHub. C'est sans danger, mais Android demande une autorisation la première fois.</p>
+
+  <h3>Première installation</h3>
+  <ol>
+    <li>Sur ton téléphone Android, ouvre le lien :<br><b>github.com/Jean-CharlesBoe/Sans-Nom/releases/latest</b></li>
+    <li>En bas de la page, dans la partie <b>Assets</b>, touche le fichier <b>SansNom-vX.Y.Z.apk</b> pour le télécharger.</li>
+    <li>Ouvre le fichier téléchargé (depuis la notification de téléchargement, ou l'app <b>Fichiers</b> → Téléchargements).</li>
+    <li>Android demande d'autoriser l'installation depuis ton navigateur : touche <b>Paramètres</b>, active <b>Autoriser depuis cette source</b>, puis reviens en arrière.</li>
+    <li>Touche <b>Installer</b>.</li>
+    <li>Si <b>Play Protect</b> affiche « application inconnue » : touche <b>Plus d'infos</b> puis <b>Installer quand même</b>. C'est normal pour une app qui ne vient pas du Play Store.</li>
+    <li>L'app <b>Sans Nom</b> apparaît avec tes autres applications.</li>
+  </ol>
+
+  <h3>Mettre à jour</h3>
+  <p>Même chemin : télécharge le nouveau fichier <b>.apk</b> depuis le même lien et installe-le. La nouvelle version s'installe <b>par-dessus</b> l'ancienne et <b>garde tous tes personnages</b>. Le numéro de version installé est écrit en bas de l'écran d'accueil.</p>
+
+  <div class="warn"><b>Ne désinstalle jamais l'app pour la mettre à jour</b> : désinstaller efface les fiches enregistrées sur le téléphone. Si tu dois vraiment la désinstaller, fais d'abord une sauvegarde (voir partie 8).</div>
+
+  <h3>Où sont mes données ?</h3>
+  <p>Tes personnages sont enregistrés <b>dans le téléphone</b>, pas sur internet : l'app fonctionne sans connexion, et personne d'autre n'y a accès. En contrepartie, c'est à toi de faire des sauvegardes de temps en temps (un seul bouton, partie 8).</p>
+</section>
+
+<!-- 2. Accueil -->
+<section class="page">
+  <h2>2. L'écran d'accueil</h2>
+  <div class="row">
+    <div class="text">
+      <p>C'est la liste de tes personnages.</p>
+      <ul>
+        <li><b>Créer un personnage</b> : écris son nom dans le champ du haut et touche <span class="kbd">Créer</span>. Sa fiche s'ouvre directement.</li>
+        <li><b>Ouvrir une fiche</b> : touche le nom du personnage.</li>
+        <li><b>Supprimer</b> : touche <span class="kbd">Supprimer</span> puis, pour confirmer, <span class="kbd">Confirmer</span> dans les 4 secondes. La suppression est définitive.</li>
+      </ul>
+      <p>En dessous, la carte <b>Sauvegarde</b> indique la date de ta dernière sauvegarde et permet de sauvegarder ou d'importer tes fiches (voir partie 8). Elle devient <b class="down">rouge</b> si tu as modifié une fiche et n'as pas sauvegardé depuis plus de 7 jours.</p>
+      <p>Tout en bas : le numéro de version de l'app.</p>
+      <div class="tip">Le bouton <b>retour</b> du téléphone ferme d'abord une fenêtre ouverte, puis revient à la liste, puis quitte l'app.</div>
+    </div>
+    <figure><img src="img/01-accueil.jpg" alt="Écran d'accueil"><figcaption>L'accueil : la liste des personnages et la carte Sauvegarde.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 3. Carac -->
+<section class="page">
+  <h2>3. La fiche : onglet Carac</h2>
+  <p>En haut, la flèche <b>←</b> revient à la liste, et le <b>crayon ✎</b> passe en mode édition (partie 5). Juste en dessous, trois onglets : <b>Carac</b>, <b>Compétences</b>, <b>Invocations</b>. <b>Tout s'enregistre automatiquement</b>, il n'y a pas de bouton « Enregistrer ».</p>
+  <div class="shots">
+    <figure><img src="img/02-carac-jeu.jpg" alt="Onglet Carac, haut"><figcaption>Identité, caractéristiques et bonus temporaires.</figcaption></figure>
+    <figure><img src="img/03-carac-bas.jpg" alt="Onglet Carac, bas"><figcaption>Ressources, XP, équipement et inventaire.</figcaption></figure>
+  </div>
+  <h3>Identité</h3>
+  <p>Titre, race, élément (pour un Élémentalien), âge et pratiques immatérielles.</p>
+  <h3>Les 8 caractéristiques</h3>
+  <ul>
+    <li>Le chiffre dans le cercle est la <b>valeur finale</b>, bonus temporaires compris. Il est <b class="up">vert</b> quand un bonus s'applique, <b class="down">rouge</b> quand c'est un malus.</li>
+    <li>La petite pastille indique les <b>avantages</b> (<b class="up">+2</b> = 2 relances du jet) ou les <b>désavantages</b> (<b class="down">-1</b>).</li>
+  </ul>
+  <h3>Ressources, XP, équipement, inventaire</h3>
+  <ul>
+    <li>Les losanges <b class="vie">Vie</b>, <b class="ame">Âme</b> et <b class="mana">Mana</b> affichent <i>actuel / maximum</i> et se remplissent comme une jauge. La régénération est écrite dessous. Un Nain n'a pas de Mana : son losange n'apparaît pas.</li>
+    <li><b>XP à dépenser</b> : boutons − / + ou saisie directe. Rappel : 1 XP = +1 sur une carac, ou +2 au maximum d'une ressource (tu fais l'ajustement toi-même en mode édition).</li>
+    <li><b>Équipement</b> et <b>Inventaire</b> : texte libre, modifiable à tout moment, même en partie.</li>
+  </ul>
+</section>
+
+<!-- 4. En partie -->
+<section class="page">
+  <h2>4. Pendant la partie</h2>
+  <div class="shots small">
+    <figure><img src="img/04-ressource.jpg" alt="Fenêtre d'une ressource"><figcaption>Toucher un losange : dépenser ou récupérer.</figcaption></figure>
+    <figure><img src="img/06-bonus.jpg" alt="Ajouter un bonus"><figcaption>« + Bonus » : ajouter un bonus temporaire.</figcaption></figure>
+    <figure><img src="img/05-detail-carac.jpg" alt="Détail d'une carac"><figcaption>Toucher un cercle : le détail du calcul.</figcaption></figure>
+  </div>
+  <h3>Dépenser ou récupérer Vie, Âme, Mana</h3>
+  <p>Touche un losange. Dans la fenêtre :</p>
+  <ul>
+    <li>les boutons <span class="kbd">-10</span> <span class="kbd">-5</span> <span class="kbd">-1</span> <span class="kbd">+1</span> <span class="kbd">+5</span> <span class="kbd">+10</span> pour les petits ajustements ;</li>
+    <li>pour un montant précis (ex. 17 dégâts) : écris-le dans <b>Montant</b> puis touche <span class="kbd">Retirer</span> ou <span class="kbd">Ajouter</span> ;</li>
+    <li><span class="kbd">Remettre au maximum</span> après un repos.</li>
+  </ul>
+  <p>Une ressource ne descend jamais sous 0 et ne dépasse jamais son maximum.</p>
+  <h3>Bonus temporaires</h3>
+  <p>Quand un sort, une potion ou une blessure modifie une carac pour un moment : touche <span class="kbd">+ Bonus</span>, choisis la carac, la valeur avec − / + (un malus est une valeur négative), et éventuellement l'origine (« Chant de bravoure »). Le bonus apparaît dans la liste et s'ajoute au cercle de la carac. Touche <b>✕</b> pour le retirer, ou <span class="kbd">Tout retirer</span> en fin de combat.</p>
+  <h3>Détail d'une carac</h3>
+  <p>Touche un cercle pour voir la valeur de base, chaque bonus en cours, le total et le nombre d'avantages.</p>
+</section>
+
+<!-- 5. Édition -->
+<section class="page">
+  <h2>5. Le mode édition</h2>
+  <p>Touche le <b>crayon ✎</b> en haut à droite : un bandeau « Mode édition » apparaît et les champs deviennent modifiables. Touche <b>✓</b> au même endroit quand tu as fini.</p>
+  <div class="shots small">
+    <figure><img src="img/07-edition-identite.jpg" alt="Édition de l'identité"><figcaption>Identité : nom, titre, race, âge, élément, pratiques.</figcaption></figure>
+    <figure><img src="img/08-edition-caracs.jpg" alt="Édition des caracs"><figcaption>Caracs : − / + pour la valeur, ligne « Av. » pour les avantages.</figcaption></figure>
+    <figure><img src="img/09-edition-ressource.jpg" alt="Maximum et régénération"><figcaption>Dans un losange : maximum et régénération.</figcaption></figure>
+  </div>
+  <ul>
+    <li><b>Identité</b> : nom, titre (le nom obtenu en jeu), race, âge, élément si Élémentalien. Pour les <b>pratiques immatérielles</b>, choisis dans la liste « + Ajouter une pratique » (ou « Autre… » pour un nom libre) ; le <b>✕</b> d'une étiquette la retire.</li>
+    <li><b>Caracs</b> : en mode édition, le cercle en pointillés montre la <b>valeur de base</b> (sans les bonus). Les boutons − / + la modifient. La ligne <b>Av.</b> règle les avantages (positif) ou désavantages (négatif).</li>
+    <li><b>Ressources</b> : touche un losange ; en bas de la fenêtre, règle le <b>Maximum</b> et la <b>Régénération</b> (ex. « 2D6 »).</li>
+  </ul>
+  <div class="tip">Changer la race par erreur n'efface rien : si tu choisis « Nain », le Mana est seulement masqué, et il revient intact si tu remets la bonne race.</div>
+</section>
+
+<!-- 6. Compétences -->
+<section class="page">
+  <h2>6. L'onglet Compétences</h2>
+  <div class="shots">
+    <figure><img src="img/10-competences-jeu.jpg" alt="Compétences en mode jeu"><figcaption>En partie : les cartes repliées, une carte dépliée.</figcaption></figure>
+    <figure><img src="img/11-competences-edition.jpg" alt="Compétences en mode édition"><figcaption>En mode édition : titre, coût, description.</figcaption></figure>
+  </div>
+  <h3>En partie</h3>
+  <p>Chaque compétence est une carte avec son titre, son <b class="mana">coût en mana</b> (s'il y en a un) et la première ligne de sa description. Touche une carte pour lire la description complète ; <span class="kbd">Tout déplier</span> / <span class="kbd">Tout replier</span> agit sur toutes les cartes.</p>
+  <h3>Ajouter ou modifier (mode édition)</h3>
+  <ul>
+    <li><span class="kbd">+ Ajouter une compétence</span> (en bas de la liste) crée une carte vide.</li>
+    <li>Remplis le <b>titre</b>, le <b>coût</b> (laisse vide s'il n'y en a pas) et la <b>description</b> (les retours à la ligne sont conservés).</li>
+    <li>Les flèches <span class="kbd">↑</span> <span class="kbd">↓</span> changent l'ordre ; <span class="kbd">Supprimer</span> puis <span class="kbd">Confirmer</span> supprime la compétence.</li>
+  </ul>
+  <div class="tip">La compétence de race est une compétence comme les autres : ajoute-la simplement à la liste.</div>
+</section>
+
+<!-- 7. Invocations -->
+<section class="page">
+  <h2>7. L'onglet Invocations</h2>
+  <p>Il regroupe les <b>animaux totem</b>, les <b>invocations</b> et les <b>animaux de compagnie</b>, sans limite de nombre.</p>
+  <div class="shots small">
+    <figure><img src="img/12-invocations-liste.jpg" alt="Liste des créatures"><figcaption>La liste, avec la Vie et les PP de chacune.</figcaption></figure>
+    <figure><img src="img/13-creature.jpg" alt="Fiche d'une créature"><figcaption>La fiche d'une créature.</figcaption></figure>
+    <figure><img src="img/14-creature-competences.jpg" alt="Compétences d'une créature"><figcaption>Ses compétences, avec un coût en PP.</figcaption></figure>
+  </div>
+  <ul>
+    <li><span class="kbd">+ Ajouter</span> : donne un nom, la fiche de la créature s'ouvre. Ça marche aussi en pleine partie, pour une invocation faite sur le moment.</li>
+    <li>Touche une créature pour ouvrir sa fiche ; <span class="kbd">← Invocations</span> (ou le bouton retour du téléphone) revient à la liste.</li>
+    <li>La fiche d'une créature fonctionne comme celle du personnage : les 8 caracs, les bonus temporaires, les losanges <b class="vie">Vie</b> et <b class="pp">PP</b> (points d'action), l'équipement, l'inventaire et ses compétences, dont le coût est en <b class="pp">PP</b>.</li>
+    <li>En mode édition : nom, <b>type</b> (« Animal totem », « Invocation », « Animal de compagnie » ou autre), race, et en bas <span class="kbd">Supprimer cette créature</span>. Dans la liste, les flèches ↑ ↓ changent l'ordre.</li>
+  </ul>
+</section>
+
+<!-- 8. Sauvegarde -->
+<section class="page">
+  <h2>8. Sauvegarder et retrouver ses fiches</h2>
+  <div class="row">
+    <div class="text">
+      <p>Les fiches survivent aux mises à jour de l'app, mais <b>pas à une désinstallation, ni à la perte ou au changement de téléphone</b>. Le fichier de sauvegarde te protège dans tous ces cas.</p>
+      <h3>Sauvegarder</h3>
+      <ol>
+        <li>Écran d'accueil → carte <b>Sauvegarde</b> → <span class="kbd">Sauvegarder</span>.</li>
+        <li>La fenêtre de partage d'Android s'ouvre : choisis <b>Drive</b> (ou envoie-toi le fichier par mail ou message).</li>
+      </ol>
+      <p>Le fichier, nommé <b>sansnom-sauvegarde-AAAA-MM-JJ.json</b>, contient <b>tous</b> tes personnages avec leurs créatures. Fais-le régulièrement, par exemple après chaque séance.</p>
+      <h3>Importer (nouveau téléphone, réinstallation…)</h3>
+      <ol>
+        <li>Installe l'app (partie 1).</li>
+        <li>Carte <b>Sauvegarde</b> → <span class="kbd">Importer</span> → choisis ton fichier (dans Drive, Téléchargements…).</li>
+        <li>Pour chaque personnage, choisis :</li>
+      </ol>
+      <table>
+        <tr><th>Importer</th><td>le personnage n'existe pas encore sur le téléphone : il est ajouté.</td></tr>
+        <tr><th>Remplacer</th><td>la fiche du téléphone est remplacée par celle du fichier.</td></tr>
+        <tr><th>Garder les deux</th><td>la fiche du fichier est ajoutée en copie, avec « (copie) » dans le nom.</td></tr>
+        <tr><th>Ignorer</th><td>ce personnage n'est pas importé.</td></tr>
+      </table>
+    </div>
+    <figure><img src="img/15-import.jpg" alt="Fenêtre d'import"><figcaption>L'import : un choix par personnage.</figcaption></figure>
+  </div>
+  <div class="tip">Un souci, une idée d'amélioration ? Préviens Jean-Charles.</div>
+</section>
+
+</body>
+</html>

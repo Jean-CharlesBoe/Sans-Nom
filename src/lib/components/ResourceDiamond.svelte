@@ -92,7 +92,7 @@
     border: 2px solid var(--c);
     border-radius: 8px;
     background: linear-gradient(
-      to top right,
+      to top left,
       color-mix(in srgb, var(--c) 22%, transparent) var(--fill),
       var(--surface) var(--fill)
     );
