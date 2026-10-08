@@ -39,4 +39,7 @@
 - À vérifier sur le téléphone de l'utilisateur : partage réel vers Drive, import depuis Drive, installation de v0.2.0 / v0.3.0 par-dessus la précédente sans perte. Backup Google non vérifiable sans câble (documenté).
 - **v0.3.0 publiée** (sauvegarde), signée avec la clé officielle (vérifié) ; notes d'installation ajoutées à sa page.
 - Étape 7 commencée : notice joueurs (docs/INSTALLATION.md), README du dépôt, notes d'installation automatiques sur chaque Release (`.github/release-notes.md`), en-tête fixe maintenu sous la barre d'état Android (fond opaque `body::before`), procédure icône (docs/ICONE.md).
-- En attente : icône (dessinée par la compagne de l'utilisateur) ; retours de l'utilisateur sur v0.3.0 (mise à jour par-dessus v0.2.0, sauvegarde vers Drive, import) ; tests chez les autres joueurs.
+- Retour utilisateur : v0.3.0 installée par-dessus v0.2.0 sans perte, sauvegarde vers Drive OK.
+- Notice illustrée en PDF : `docs/Notice-Sans-Nom.pdf`, générée depuis `docs/notice/notice.html` (captures d'un personnage d'exemple « Aldric », thème clair, dans `docs/notice/img/`). Régénération : voir RELEASE.md.
+- Correctif : les losanges se remplissent du bas vers le haut (gradient `to top left`). Pas encore publié (prochaine version).
+- En attente : icône (dessinée par la compagne de l'utilisateur) ; tests chez les autres joueurs.

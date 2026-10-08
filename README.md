@@ -6,6 +6,8 @@ Application Android de fiche de personnage pour le JDR **Sans Nom** : caractéri
 
 👉 **[Télécharger la dernière version](https://github.com/Jean-CharlesBoe/Sans-Nom/releases/latest)** (fichier `.apk`), puis suivre la [notice d'installation](docs/INSTALLATION.md).
 
+📄 **[Notice illustrée (PDF)](docs/Notice-Sans-Nom.pdf)** : installation et utilisation de l'app, avec captures d'écran.
+
 ## Développement
 
 App web (Vite + TypeScript + Svelte 5) emballée en app Android par Capacitor, données en SQLite.

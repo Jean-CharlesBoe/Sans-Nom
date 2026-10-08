@@ -1,5 +1,7 @@
 # Installer Sans Nom sur ton téléphone Android
 
+> Version illustrée avec captures d'écran : [Notice-Sans-Nom.pdf](Notice-Sans-Nom.pdf)
+
 ## Première installation
 
 1. Sur ton téléphone, ouvre ce lien :

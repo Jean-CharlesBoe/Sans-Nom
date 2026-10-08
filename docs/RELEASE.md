@@ -130,3 +130,13 @@ L'accueil affiche la date de la dernière sauvegarde et passe en rouge s'il y a 
 
 **Sauvegarde Google d'Android** : l'app autorise la sauvegarde automatique (`allowBackup`), qui inclut la base SQLite si la sauvegarde Google est activée sur le téléphone (Paramètres → Google → Sauvegarde). Elle est restaurée quand on installe l'app sur un nouveau téléphone lié au même compte. Son déclenchement dépend d'Android (téléphone en charge, Wi-Fi, au plus une fois par jour) et n'a pas pu être vérifié sans câble : **ne pas compter dessus à la place du fichier**.
 
+
+## Régénérer la notice PDF
+
+Source : `docs/notice/notice.html` + captures dans `docs/notice/img/` (format téléphone 375 × 812, thème clair, personnage d'exemple). Après modification, dans PowerShell :
+
+```powershell
+& "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu --no-pdf-header-footer --user-data-dir="$env:TEMP\edge-pdf" --print-to-pdf="C:\Repos\Sans Nom\docs\Notice-Sans-Nom.pdf" "file:///C:/Repos/Sans%20Nom/docs/notice/notice.html"
+```
+
+Chaque section tient sur une page A4 : vérifier que le PDF a toujours une page par section (9 actuellement).
