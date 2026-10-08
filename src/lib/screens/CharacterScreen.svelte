@@ -4,6 +4,7 @@
   import { onDestroy, onMount } from 'svelte'
   import type { Character } from '../model/character'
   import { getRepository } from '../storage/repository'
+  import SkillList from '../components/SkillList.svelte'
   import CaracTab from './CaracTab.svelte'
 
   let { id, onBack }: { id: string; onBack: () => void } = $props()
@@ -120,8 +121,10 @@
   {:else if character}
     {#if tab === 'carac'}
       <CaracTab {character} {editing} />
+    {:else if tab === 'competences'}
+      <SkillList owner={character} {editing} unit="mana" />
     {:else}
-      <!-- Étapes 4 et 5 de la roadmap -->
+      <!-- Étape 5 de la roadmap -->
       <p class="muted">Onglet « {TABS.find(t => t[0] === tab)?.[1]} » à venir.</p>
     {/if}
   {/if}
