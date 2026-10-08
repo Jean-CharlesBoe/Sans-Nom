@@ -7,6 +7,12 @@
   --accent: #8a5a00;
   --accent-text: #ffffff;
   --danger: #a4161a;
+  --up: #1f7a45;
+  --down: #b3261e;
+  --vie: #c0392b;
+  --ame: #7b4fb8;
+  --mana: #2a6fd6;
+  --pp: #c77d12;
   --radius: 10px;
   color-scheme: light;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -27,6 +33,12 @@
     --accent: #e0a840;
     --accent-text: #1a1406;
     --danger: #ff6b6b;
+    --up: #5fd08e;
+    --down: #ff7b72;
+    --vie: #ef6f60;
+    --ame: #b08cf0;
+    --mana: #6aa5ff;
+    --pp: #f0b24a;
     color-scheme: dark;
   }
 }
@@ -92,4 +104,43 @@ textarea {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+select {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  width: 100%;
+}
+
+textarea {
+  resize: vertical;
+  field-sizing: content;
+  min-height: 88px;
 }

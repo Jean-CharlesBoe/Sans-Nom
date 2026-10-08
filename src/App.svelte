@@ -4,6 +4,7 @@
   import { onMount } from 'svelte'
   import Home from './lib/screens/Home.svelte'
   import CharacterScreen from './lib/screens/CharacterScreen.svelte'
+  import { handleBack } from './lib/ui/back'
 
   let openId = $state<string | null>(null)
 
@@ -11,6 +12,7 @@
     if (!Capacitor.isNativePlatform()) return
     // Bouton retour Android : revenir à la liste, ou quitter depuis la liste.
     const handle = CapApp.addListener('backButton', () => {
+      if (handleBack()) return
       if (openId) openId = null
       else CapApp.exitApp()
     })

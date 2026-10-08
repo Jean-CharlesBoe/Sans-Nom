@@ -32,8 +32,8 @@ Deux modes : **jeu** (par défaut : ressources, bonus temporaires, XP) et **édi
 3. **Bonus temporaires** : liste courte (carac, ±N, origine), ajout rapide, suppression d'un tap. Pas de durée.
 4. **Ressources** : 3 losanges `actuel / max` — **Vie**, **Âme**, **Mana**. Ajustement rapide (+1 / −1, saisie d'un montant à retirer ou ajouter). L'actuel est borné entre 0 et le max. Sous chaque ressource : **Régénération** (texte, ex. « 2D6 »).
 5. **XP à dépenser** : compteur + rappel de la règle (1 XP = +1 carac ou +2 au max d'une ressource). Pas de dépense automatique : le joueur ajuste lui-même.
-6. **Équipement** : texte libre.
-7. **Inventaire** : texte libre.
+6. **Équipement** : texte libre, modifiable aussi en mode jeu (D7).
+7. **Inventaire** : texte libre, modifiable aussi en mode jeu (D7).
 
 ### 3.2 Compétences (croquis 2)
 

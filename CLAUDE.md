@@ -47,7 +47,9 @@ src/
   lib/storage/repository.ts      contrat CharacterRepository + choix de l'implémentation
   lib/storage/sqliteRepository.ts  SQLite (Android) + migrations du schéma
   lib/storage/webRepository.ts   repli localStorage pour `npm run dev` uniquement
-  lib/screens/                   écrans (Home, CharacterScreen)
+  lib/screens/                   écrans : Home, CharacterScreen (onglets, mode édition, sauvegarde auto), CaracTab
+  lib/components/                blocs réutilisables (perso + créatures) : StatGrid, ResourceDiamond, TempBonuses, IdentityBlock
+  lib/ui/                        primitives : Sheet (fenêtre du bas), NumberInput, back.ts (pile du bouton retour)
 android/                         projet Android généré par Capacitor (versionné)
 .github/workflows/android.yml    CI : check, tests, APK debug ; APK signé + Release sur tag vX.Y.Z
 ```

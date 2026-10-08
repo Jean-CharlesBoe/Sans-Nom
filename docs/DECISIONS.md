@@ -47,3 +47,10 @@ Les noms de variables/fichiers en anglais (`character`, `stats`), les textes aff
 - Pas de Chromebook à supporter (Q 29).
 - `appId` : `fr.sansnom.fiche` (définitif).
 - Procédure complète : [RELEASE.md](RELEASE.md).
+
+## D7 · 2026-10-08 · Écran Carac : choix d'interface — *proposée*
+- **Équipement et inventaire modifiables en mode jeu** (pas seulement en mode édition) : on ramasse et on utilise des objets pendant la partie.
+- **Ressources** : un tap sur un losange ouvre une fenêtre du bas (−10 / −5 / −1 / +1 / +5 / +10, montant libre à retirer ou ajouter, « Remettre au maximum ») ; maximum et régénération dans cette même fenêtre, en mode édition seulement. Le losange se remplit selon actuel / max.
+- **Caracs** : en mode jeu, le cercle affiche la valeur finale (verte avec un bonus, rouge avec un malus), avec une pastille d'avantages (+N vert, −N rouge) ; un tap ouvre le détail (valeur, bonus, total). En mode édition, le cercle (pointillé) affiche la valeur de base avec + / − et la ligne « Av. − n + ».
+- **Sauvegarde automatique** 400 ms après chaque modification, immédiate au retour à la liste et quand l'app passe en arrière-plan.
+- Bouton retour Android : ferme d'abord la fenêtre ouverte, puis revient à la liste, puis quitte.
