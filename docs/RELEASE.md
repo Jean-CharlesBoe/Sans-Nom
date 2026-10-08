@@ -88,6 +88,16 @@ keyAlias=sansnom
 keyPassword=...
 ```
 
+## Empreinte de la clé officielle
+
+Les APK de release doivent tous porter ce certificat (SHA-256) :
+`9e057587ad8057b4e6244c56f579d40d78f274b7b00a88a621341381b064c452`
+
+Vérifier un APK (`keytool -printcert` ne lit pas la signature v2, utiliser `apksigner` du SDK) :
+```bash
+"$LOCALAPPDATA/Android/Sdk/build-tools/36.0.0/apksigner.bat" verify --print-certs SansNom-vX.Y.Z.apk
+```
+
 ## Publier une version
 
 Le workflow [.github/workflows/android.yml](../.github/workflows/android.yml) :

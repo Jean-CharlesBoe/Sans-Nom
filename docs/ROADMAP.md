@@ -1,11 +1,11 @@
 # Roadmap
 
-Étape en cours : **1 — Socle** (reste : clé de signature + secrets, test de l'APK sur un téléphone)
+Étape en cours : **2 — Module de règles**
 
 | # | Étape | Contenu | Statut |
 |---|---|---|---|
 | 0 | Cadrage | Docs, questions/réponses, décisions D1–D6 | fait |
-| 1 | Socle | Init git + dépôt GitHub, Vite/TS/Svelte, Capacitor Android, SQLite + couche repository (avec repli web pour le dev), écran liste des personnages, build APK signé par GitHub Actions | en cours |
+| 1 | Socle | Init git + dépôt GitHub, Vite/TS/Svelte, Capacitor Android, SQLite + couche repository (avec repli web pour le dev), écran liste des personnages, build APK signé par GitHub Actions | fait (v0.1.0) |
 | 2 | Module de règles | Caracs, avantages, bonus temporaires, ressources bornées, XP ; tests Vitest | à faire |
 | 3 | Écran Carac | Identité, grille des 8 caracs, bonus temporaires, losanges + régénération, XP, équipement, inventaire, modes jeu/édition | à faire |
 | 4 | Compétences | Cartes repliables, coût en mana, ajout / édition / tri | à faire |
@@ -28,4 +28,5 @@
 - Dépôt public créé : https://github.com/Jean-CharlesBoe/Sans-Nom (fiche-perso.html et ANALYSE_FICHE_ELOY.md exclus via .gitignore). Premier run CI vert : APK de debug produit (artefact `sansnom-debug-apk`).
 - APK de debug testé par l'utilisateur sur son téléphone (installé sans câble, via l'artefact) : fonctionne.
 - Clé de signature : procédure PowerShell + `gh secret set` ajoutée dans RELEASE.md ; génération en cours côté utilisateur.
-- Prochaine étape : vérifier les 4 secrets, publier v0.1.0 (premier APK signé) ; puis étape 2 (module de règles).
+- 4 secrets configurés. **v0.1.0 publiée** : https://github.com/Jean-CharlesBoe/Sans-Nom/releases/tag/v0.1.0 — APK signé v2 avec la clé officielle (empreinte dans RELEASE.md), vérifié avec apksigner.
+- Prochaine étape : étape 2 (module de règles).
