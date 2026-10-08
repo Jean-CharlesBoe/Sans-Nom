@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+node_modules
+dist
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.sw?
+
+# Android (Capacitor)
+android/app/build
+android/build
+android/.gradle
+android/local.properties
+android/app/src/main/assets/public
+android/capacitor-cordova-android-plugins/build
+
+# Clé de signature : ne JAMAIS la versionner (voir docs/RELEASE.md)
+*.jks
+*.keystore
+keystore.properties
+
+# Fichiers de référence gardés en local uniquement (dépôt public)
+fiche-perso.html
+docs/ANALYSE_FICHE_ELOY.md

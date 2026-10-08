@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Sans Nom</string>
+    <string name="title_activity_main">Sans Nom</string>
+    <string name="package_name">fr.sansnom.fiche</string>
+    <string name="custom_url_scheme">fr.sansnom.fiche</string>
+</resources>
