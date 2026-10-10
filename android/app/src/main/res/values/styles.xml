@@ -18,5 +18,7 @@
 
     <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
         <item name="android:background">@drawable/splash</item>
+        <!-- Android 12+ : fond de l'écran de démarrage (l'icône de l'app est affichée dessus) -->
+        <item name="windowSplashScreenBackground">#F7F0E4</item>
     </style>
 </resources>

@@ -42,4 +42,7 @@
 - Retour utilisateur : v0.3.0 installée par-dessus v0.2.0 sans perte, sauvegarde vers Drive OK.
 - Notice illustrée en PDF : `docs/Notice-Sans-Nom.pdf`, générée depuis `docs/notice/notice.html` (captures d'un personnage d'exemple « Aldric », thème clair, dans `docs/notice/img/`). Régénération : voir RELEASE.md.
 - Correctif : les losanges se remplissent du bas vers le haut (gradient `to top left`). Pas encore publié (prochaine version).
-- En attente : icône (dessinée par la compagne de l'utilisateur) ; tests chez les autres joueurs.
+- Icône intégrée (logo « SN » de la compagne de l'utilisateur, adapté à la zone visible des icônes adaptatives, fond crème #f7f0e4) + écran de démarrage assorti ; régénération : `npm run icons` (docs/ICONE.md).
+- **v0.4.0** : icône, écran de démarrage, losanges remplis du bas vers le haut, en-tête sous la barre d'état.
+- Réponse à l'utilisateur : il peut envoyer l'APK de la page Releases à ses amis (jamais l'artefact de debug), ou plus simplement le lien releases/latest.
+- En attente : tests chez les autres joueurs.
