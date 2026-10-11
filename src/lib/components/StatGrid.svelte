@@ -1,6 +1,7 @@
 <script lang="ts">
   import { STATS, type StatKey } from '../model/character'
-  import { bonusTotal, finalStat, setAvantages, stepStat, type HasStats } from '../rules/stats'
+  import { bonusTotal, finalStat, setAvantages, setStatValue, stepStat, type HasStats } from '../rules/stats'
+  import NumberInput from '../ui/NumberInput.svelte'
   import Sheet from '../ui/Sheet.svelte'
 
   // Grille des 8 caracs (croquis : 3 + 3 + 2). Sert au personnage et aux créatures.
@@ -25,8 +26,9 @@
     <div class="cell">
       <span class="label name">{label}</span>
       {#if editing}
-        <div class="circle edit" aria-label="{label} : valeur {owner.stats[key].valeur}">
-          {owner.stats[key].valeur}
+        <!-- Saisie directe (ex. 40) ; les boutons + / − servent aux petits ajustements -->
+        <div class="circle edit">
+          <NumberInput value={owner.stats[key].valeur} label="{label} : valeur" onCommit={n => setStatValue(owner, key, n)} />
         </div>
         <div class="row">
           <button class="step" onclick={() => stepStat(owner, key, -1)} aria-label="Diminuer {label}">−</button>
@@ -118,6 +120,18 @@
   }
   .circle.edit {
     border-style: dashed;
+    overflow: hidden;
+  }
+  .circle.edit :global(input) {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    font-size: 1.35rem;
+    font-weight: 700;
   }
   .circle.up {
     color: var(--up);

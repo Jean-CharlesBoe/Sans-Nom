@@ -67,3 +67,6 @@ Les noms de variables/fichiers en anglais (`character`, `stats`), les textes aff
 - **Carnet** : un composant unique `NoteList` pour le Lore et l'Histoire (option `dated`). Les séances sont affichées triées par date (plus récente en haut) sans modifier l'ordre stocké ; les sections de Lore gardent l'ordre choisi.
 - **Format** : `SCHEMA_VERSION` 2 ; une fiche v1 se charge avec photo nulle, Lore et Histoire vides.
 - L'onglet Carnet a été préféré à deux onglets séparés (5 onglets trop serrés sur téléphone).
+
+## D10 · 2026-10-11 · Saisie directe des caracs — *validée*
+Retour utilisateur : avec seulement + / −, passer une carac à 40 demande 40 taps. En mode édition, le cercle en pointillés devient un champ numérique (`NumberInput`, validé à la sortie du champ, bornes de `setStatValue`) ; les boutons + / − restent pour les petits ajustements. Les avantages gardent leurs boutons (valeurs petites, −20 à +20).

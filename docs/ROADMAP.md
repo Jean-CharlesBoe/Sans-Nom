@@ -57,3 +57,5 @@
 - **v0.5.0 publiée** (signée, versionCode 500).
 - Notice PDF : 11 pages, nouvelles parties 8 (photo) et 9 (Carnet), captures mises à jour (accueil, Carac, identité en édition, invocations, créature).
 - À vérifier sur téléphone : appareil photo / galerie, migration SQLite 2 lors de la mise à jour par-dessus v0.4.0.
+- Retour utilisateur : mise à jour v0.4.0 → v0.5.0 et photo OK sur téléphone.
+- Saisie directe de la valeur des caracs en mode édition (D10) → v0.5.1.
