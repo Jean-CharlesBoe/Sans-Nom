@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Sans Nom — maquettes v0.5 (photo, Carnet)</title>
+<style>
+  /* Jetons repris de src/app.css */
+  .light { --bg:#f6f5f1; --surface:#fff; --text:#1c1b19; --muted:#6b6963; --line:#d9d6cf; --accent:#8a5a00; --accent-text:#fff; --danger:#a4161a; --up:#1f7a45; --down:#b3261e; --vie:#c0392b; --ame:#7b4fb8; --mana:#2a6fd6; --pp:#c77d12; }
+  .dark  { --bg:#15161a; --surface:#1f2126; --text:#e9e7e2; --muted:#9a978f; --line:#34363d; --accent:#e0a840; --accent-text:#1a1406; --danger:#ff6b6b; --up:#5fd08e; --down:#ff7b72; --vie:#ef6f60; --ame:#b08cf0; --mana:#6aa5ff; --pp:#f0b24a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 28px; background: #d9dde3; font-family: 'Segoe UI', system-ui, sans-serif; color: #1c1b19; }
+  h1 { margin: 0 0 4px; font-size: 26px; }
+  .intro { margin: 0 0 22px; color: #4a4a4a; font-size: 15px; max-width: 1500px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 375px); gap: 28px 26px; }
+  .shot { display: flex; flex-direction: column; gap: 8px; }
+  .shot h2 { margin: 0; font-size: 15px; }
+  .shot p.cap { margin: 0; font-size: 13px; color: #4a4a4a; line-height: 1.35; min-height: 54px; }
+  .phone { position: relative; width: 375px; height: 760px; overflow: hidden; border-radius: 26px; border: 8px solid #2b2d33; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.4; }
+  .app { height: 100%; overflow: hidden; }
+  header { display: flex; align-items: center; gap: 4px; padding: 6px 8px; }
+  header .ic { width: 44px; text-align: center; font-size: 22px; }
+  header h1 { flex: 1; margin: 0; font-size: 21px; }
+  header .edit-on { background: var(--accent); color: var(--accent-text); border-radius: 10px; height: 40px; display: grid; place-items: center; }
+  .tabs { display: flex; border-bottom: 1px solid var(--line); padding: 0 6px; }
+  .tabs span { flex: 1; text-align: center; padding: 10px 0 8px; color: var(--muted); font-size: 14.5px; border-bottom: 3px solid transparent; }
+  .tabs span.on { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
+  .banner { background: var(--accent); color: var(--accent-text); text-align: center; font-size: 12.5px; font-weight: 600; padding: 3px; }
+  main { padding: 14px 16px; display: grid; gap: 16px; align-content: start; }
+  .label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 15px; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
+  .btn.danger { color: var(--danger); border-color: var(--danger); }
+  .btn.small { min-height: 34px; font-size: 14px; padding: 0 10px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { padding: 1px 10px; border: 1px solid var(--accent); color: var(--accent); border-radius: 999px; font-size: 13px; }
+  .muted { color: var(--muted); }
+  .new { outline: 3px solid #e2574c; outline-offset: 3px; border-radius: 12px; }
+  .new-tag { position: absolute; background: #e2574c; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; letter-spacing: .03em; }
+
+  /* Identité avec photo */
+  .ident { display: flex; gap: 14px; align-items: center; }
+  .avatar { width: 76px; height: 76px; border-radius: 50%; overflow: hidden; flex: none; border: 2px solid var(--accent); }
+  .avatar svg { width: 100%; height: 100%; display: block; }
+  .avatar.empty { border: 2px dashed var(--muted); display: grid; place-items: center; color: var(--muted); font-size: 13px; text-align: center; line-height: 1.1; }
+  .ident .titre { font-style: italic; font-size: 17px; margin: 0; }
+  .ident .sum { color: var(--muted); margin: 0 0 4px; font-size: 14.5px; }
+
+  /* Caracs (extrait) */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 8px; }
+  .stat { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .stat .n { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; color: var(--muted); }
+  .circle { position: relative; width: 58px; height: 58px; border-radius: 50%; border: 2px solid var(--text); display: grid; place-items: center; font-size: 21px; font-weight: 700; background: var(--surface); }
+  .circle.up { color: var(--up); border-color: var(--up); } .circle.down { color: var(--down); border-color: var(--down); }
+  .badge { position: absolute; right: -8px; bottom: -4px; min-width: 22px; padding: 0 5px; border-radius: 11px; background: var(--up); color: var(--surface); font-size: 11px; line-height: 20px; }
+  .badge.neg { background: var(--down); }
+
+  /* Fenêtre du bas */
+  .dim { position: absolute; inset: 0; background: rgb(0 0 0 / .45); }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); border-radius: 16px 16px 0 0; padding: 10px 16px 18px; display: grid; gap: 12px; }
+  .sheet .sh { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 18px; }
+  .big-photo { width: 100%; aspect-ratio: 1; border-radius: 14px; overflow: hidden; }
+  .big-photo svg { width: 100%; height: 100%; display: block; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* Accueil */
+  .home h1 { margin: 0; font-size: 28px; }
+  .row { display: flex; gap: 8px; }
+  .input { flex: 1; min-height: 42px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 9px 12px; color: var(--muted); font-size: 15px; }
+  .perso { flex: 1; display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+  .thumb { width: 46px; height: 46px; border-radius: 50%; overflow: hidden; flex: none; }
+  .thumb svg { width: 100%; height: 100%; display: block; }
+  .thumb.empty { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); display: grid; place-items: center; font-weight: 700; font-size: 18px; }
+
+  /* Carnet */
+  .seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .seg span { text-align: center; padding: 8px 0; font-size: 15px; color: var(--muted); background: var(--surface); }
+  .seg span.on { background: var(--accent); color: var(--accent-text); font-weight: 600; }
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .item { overflow: hidden; }
+  .item .sum2 { display: flex; align-items: center; gap: 8px; padding: 10px 12px; }
+  .item .t { flex: 1; font-weight: 600; }
+  .item .chev { color: var(--muted); font-size: 13px; }
+  .item .prev { margin: -6px 0 0; padding: 0 12px 10px; color: var(--muted); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item .full { margin: 0; padding: 10px 12px 12px; border-top: 1px solid var(--line); white-space: pre-wrap; font-size: 15px; }
+  .date { flex: none; padding: 2px 8px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); font-size: 12.5px; font-weight: 600; }
+  .field { min-height: 40px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 8px 12px; font-size: 15px; }
+  .field.area { min-height: 92px; white-space: pre-wrap; }
+  .edit-card { padding: 10px; display: grid; gap: 8px; }
+  .acts { display: flex; gap: 6px; }
+  .acts .sp { flex: 1; }
+  .writehint { font-size: 12.5px; color: var(--muted); }
+
+  /* Invocations */
+  .cr { display: flex; gap: 12px; align-items: center; padding: 10px 12px; }
+  .cr .meta { color: var(--muted); font-size: 14px; }
+  .cr .res { display: flex; gap: 12px; font-size: 13px; } .vie { color: var(--vie); } .pp { color: var(--pp); }
+  .note { position: absolute; left: 10px; right: 10px; bottom: 10px; background: #fff7d6; color: #5a4600; border: 1px solid #e8d48a; border-radius: 10px; padding: 8px 10px; font-size: 12.5px; line-height: 1.35; }
+</style>
+</head>
+<body>
+
+<!-- Portraits d'exemple (illustrations de remplacement : sur le téléphone, ce sera une vraie photo) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="skyA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4f7a"/><stop offset="1" stop-color="#c98b4a"/></linearGradient>
+    <linearGradient id="skyB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e5c5a"/><stop offset="1" stop-color="#9fc7b8"/></linearGradient>
+    <linearGradient id="skyC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a6e"/><stop offset="1" stop-color="#e3a6b4"/></linearGradient>
+  </defs>
+  <symbol id="aldric" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="url(#skyA)"/>
+    <path d="M62 8 l-10 22 h9 l-12 24 l22-30 h-10 l9-16z" fill="#ffe27a" opacity=".9"/>
+    <path d="M20 100 C22 72 34 62 50 62 C66 62 78 72 80 100z" fill="#2c2b33"/>
+    <path d="M30 70 C30 40 40 26 50 26 C60 26 70 40 70 70 L64 66 C62 48 58 42 50 42 C42 42 38 48 36 66z" fill="#3d3a47"/>
+    <ellipse cx="50" cy="52" rx="12" ry="14" fill="#e6b994"/>
+    <path d="M40 48 q10 -10 20 0" stroke="#3d3a47" stroke-width="3" fill="none"/>
+  </symbol>
+  <symbol id="mira" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="url(#skyC)"/>
+    <path d="M24 100 C26 74 36 64 50 64 C64 64 74 74 76 100z" fill="#3f6b4a"/>
+    <path d="M30 80 C26 46 36 28 50 28 C64 28 74 46 70 80 C66 70 64 60 62 54 L38 54 C36 60 34 70 30 80z" fill="#b8572e"/>
+    <ellipse cx="50" cy="52" rx="11" ry="13" fill="#f0cfae"/>
+    <path d="M38 50 l-9 -10 l6 12z M62 50 l9 -10 l-6 12z" fill="#f0cfae"/>
+  </symbol>
+  <symbol id="volt" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="url(#skyB)"/>
+    <path d="M18 100 C20 70 34 56 50 56 C66 56 80 70 82 100z" fill="#4a5563"/>
+    <path d="M32 58 L28 26 L42 42 Q50 38 58 42 L72 26 L68 58 Q62 74 50 76 Q38 74 32 58z" fill="#6b7787"/>
+    <circle cx="43" cy="54" r="3" fill="#ffe27a"/><circle cx="57" cy="54" r="3" fill="#ffe27a"/>
+    <path d="M46 64 h8 l-4 5z" fill="#2c2b33"/>
+    <path d="M70 12 l-6 12 h5 l-7 13 l13-16 h-6 l5-9z" fill="#ffe27a"/>
+  </symbol>
+</svg>
+
+<h1>Sans Nom — maquettes v0.5</h1>
+<p class="intro">Photo du personnage et des créatures, et nouvel onglet <b>Carnet</b> (Lore + Histoire). Les zones nouvelles sont entourées en <b style="color:#e2574c">rouge</b>. Les portraits sont des illustrations de remplacement : dans l'app, ce sera la photo choisie (appareil photo ou galerie).</p>
+
+<div class="grid">
+
+<!-- 1. Carac avec photo -->
+<div class="shot">
+  <h2>1. Onglet Carac : la photo</h2>
+  <p class="cap">Le portrait apparaît à gauche de l'identité. Un tap dessus ouvre la photo en grand.</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span class="on">Carac</span><span>Compétences</span><span>Invocations</span><span class="new" style="outline-offset:-2px">Carnet</span></div>
+    <main>
+      <div class="ident new">
+        <div class="avatar"><svg><use href="#aldric"/></svg></div>
+        <div>
+          <p class="titre">le Veilleur</p>
+          <p class="sum">Élémentalien · Foudre · 27 ans</p>
+          <div class="chips"><span class="chip">Pyromancie</span><span class="chip">Spiritisme</span></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="n">ROBUSTESSE</span><div class="circle down">12</div></div>
+        <div class="stat"><span class="n">ADRESSE</span><div class="circle up">21<span class="badge">+1</span></div></div>
+        <div class="stat"><span class="n">FINESSE</span><div class="circle">9</div></div>
+        <div class="stat"><span class="n">INTELLECT</span><div class="circle">12</div></div>
+        <div class="stat"><span class="n">VOLONTÉ</span><div class="circle">22<span class="badge">+2</span></div></div>
+        <div class="stat"><span class="n">SAVOIR-FAIRE</span><div class="circle">6</div></div>
+        <div class="stat"><span class="n">EXPRESSION</span><div class="circle">11<span class="badge neg">-1</span></div></div>
+        <div class="stat"></div>
+        <div class="stat"><span class="n">PERCEPTION</span><div class="circle">16</div></div>
+      </div>
+      <div class="head"><span class="label">Bonus temporaires</span><span class="btn small">+ Bonus</span></div>
+      <div class="card" style="padding:8px 12px;border-left:4px solid var(--up)"><b>Adresse +3</b> <span class="muted">· Potion de vivacité</span></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 2. Fenêtre photo -->
+<div class="shot">
+  <h2>2. La photo en grand</h2>
+  <p class="cap">« Changer la photo » : Android propose l'appareil photo ou la galerie. La photo est recadrée en carré et allégée.</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span class="on">Carac</span><span>Compétences</span><span>Invocations</span><span>Carnet</span></div>
+    <main>
+      <div class="ident"><div class="avatar"><svg><use href="#aldric"/></svg></div><div><p class="titre">le Veilleur</p><p class="sum">Élémentalien · Foudre · 27 ans</p></div></div>
+    </main>
+    <div class="dim"></div>
+    <div class="sheet new" style="outline-offset:-3px">
+      <div class="sh"><span>Aldric</span><span>✕</span></div>
+      <div class="big-photo"><svg><use href="#aldric"/></svg></div>
+      <div class="two"><span class="btn primary">Changer la photo</span><span class="btn danger">Retirer</span></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- 3. Accueil -->
+<div class="shot">
+  <h2>3. L'accueil avec les portraits</h2>
+  <p class="cap">Chaque personnage est reconnaissable à sa miniature. Sans photo : son initiale.</p>
+  <div class="phone light"><div class="app">
+    <main class="home" style="padding-top:22px">
+      <div><h1>Sans Nom</h1><span class="muted">Fiches de personnage</span></div>
+      <div class="row"><span class="input">Nom du nouveau personnage</span><span class="btn primary" style="opacity:.6">Créer</span></div>
+      <div class="row"><div class="card perso new" style="outline-offset:-3px"><div class="thumb"><svg><use href="#aldric"/></svg></div><div><b>Aldric</b><br><span class="muted" style="font-size:13.5px">Modifié le 12 oct. 2026</span></div></div><span class="btn danger" style="height:62px">Supprimer</span></div>
+      <div class="row"><div class="card perso"><div class="thumb"><svg><use href="#mira"/></svg></div><div><b>Mira</b><br><span class="muted" style="font-size:13.5px">Modifié le 9 oct. 2026</span></div></div><span class="btn danger" style="height:62px">Supprimer</span></div>
+      <div class="row"><div class="card perso"><div class="thumb empty">B</div><div><b>Brann</b><br><span class="muted" style="font-size:13.5px">Modifié le 2 oct. 2026</span></div></div><span class="btn danger" style="height:62px">Supprimer</span></div>
+      <div class="card" style="padding:12px;display:grid;gap:6px"><span class="label">Sauvegarde</span><b>Dernière sauvegarde : hier.</b><span class="muted" style="font-size:13px">Les photos sont incluses dans le fichier de sauvegarde.</span><div class="two"><span class="btn primary">Sauvegarder</span><span class="btn">Importer</span></div></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 4. Carnet - Lore -->
+<div class="shot">
+  <h2>4. Carnet → Lore</h2>
+  <p class="cap">Des sections titrées, repliées avec un aperçu. Un tap déplie le texte complet.</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span>Carac</span><span>Compétences</span><span>Invocations</span><span class="on">Carnet</span></div>
+    <main>
+      <div class="seg new"><span class="on">Lore</span><span>Histoire</span></div>
+      <div class="head"><span class="label">4 sections</span><span class="btn small primary">+ Section</span></div>
+      <div class="card item"><div class="sum2"><span class="t">Origines</span><span class="chev">▴</span></div>
+        <p class="full">Né à Varhal, un village de bergers accroché aux falaises du Nord. La nuit de sa naissance, la foudre frappa sept fois le vieux chêne de la place.
+
+Son père, forgeron, y vit un présage ; sa mère, un avertissement.</p></div>
+      <div class="card item"><div class="sum2"><span class="t">Famille</span><span class="chev">▾</span></div><p class="prev">Père : Oren, forgeron. Mère : Ilse, guérisseuse. Une sœur cadette, Tia…</p></div>
+      <div class="card item"><div class="sum2"><span class="t">L'éveil de la foudre</span><span class="chev">▾</span></div><p class="prev">À douze ans, pendant un orage, l'éclair le traversa sans le brûler…</p></div>
+      <div class="card item"><div class="sum2"><span class="t">Croyances et serments</span><span class="chev">▾</span></div><p class="prev">A juré sur la tombe de son maître de ne jamais servir un dieu…</p></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 5. Lore en écriture -->
+<div class="shot">
+  <h2>5. Écrire une section</h2>
+  <p class="cap">On écrit à tout moment, même en partie. Supprimer et changer l'ordre (↑ ↓) : en mode édition (crayon), comme pour les compétences.</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span>Carac</span><span>Compétences</span><span>Invocations</span><span class="on">Carnet</span></div>
+    <main>
+      <div class="seg"><span class="on">Lore</span><span>Histoire</span></div>
+      <div class="card item"><div class="sum2"><span class="t">Origines</span><span class="chev">▾</span></div><p class="prev">Né à Varhal, un village de bergers accroché aux falaises…</p></div>
+      <div class="card edit-card new" style="outline-offset:-3px">
+        <div class="field"><b>Famille</b></div>
+        <div class="field area">Père : Oren, forgeron, mort pendant la guerre des Cendres.
+Mère : Ilse, guérisseuse, vit toujours à Varhal.
+Une sœur cadette, Tia, partie étudier à la capitale. Aldric lui écrit à chaque grande ville.|</div>
+        <div class="acts"><span class="sp"></span><span class="btn small primary">Terminé</span></div>
+      </div>
+      <div class="card item"><div class="sum2"><span class="t">L'éveil de la foudre</span><span class="chev">▾</span></div><p class="prev">À douze ans, pendant un orage, l'éclair le traversa…</p></div>
+      <div class="card item"><div class="sum2"><span class="t">Croyances et serments</span><span class="chev">▾</span></div><p class="prev">A juré sur la tombe de son maître…</p></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 6. Histoire -->
+<div class="shot">
+  <h2>6. Carnet → Histoire</h2>
+  <p class="cap">Une entrée par séance, la plus récente en haut, avec sa date. Un tap déplie le récit.</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span>Carac</span><span>Compétences</span><span>Invocations</span><span class="on">Carnet</span></div>
+    <main>
+      <div class="seg"><span>Lore</span><span class="on">Histoire</span></div>
+      <div class="head"><span class="label">12 séances</span><span class="btn small primary new">+ Séance</span></div>
+      <div class="card item"><div class="sum2"><span class="date">12 oct. 2026</span><span class="t">L'embuscade du col</span><span class="chev">▴</span></div>
+        <p class="full">Attaqués par des pillards au col de Brume. Volt a repéré leur piste avant l'aube.
+
+Mira a été blessée (Robustesse −2). On a gardé un prisonnier : il parle d'un « homme en gris » qui les paie.</p></div>
+      <div class="card item"><div class="sum2"><span class="date">28 sept. 2026</span><span class="t">Arrivée à Villea</span><span class="chev">▾</span></div><p class="prev">La garde nous a confisqué nos armes à l'entrée de la ville…</p></div>
+      <div class="card item"><div class="sum2"><span class="date">14 sept. 2026</span><span class="t">Le pacte de l'Esprit des cendres</span><span class="chev">▾</span></div><p class="prev">Première invocation réussie, au prix de 20 d'Âme…</p></div>
+      <div class="card item"><div class="sum2"><span class="date">31 août 2026</span><span class="t">Départ de Varhal</span><span class="chev">▾</span></div><p class="prev">Tia nous a accompagnés jusqu'au pont…</p></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 7. Nouvelle séance -->
+<div class="shot">
+  <h2>7. Noter une séance</h2>
+  <p class="cap">« + Séance » crée une entrée datée du jour (modifiable), prête à écrire. Pratique pendant ou juste après la partie.</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span>Carac</span><span>Compétences</span><span>Invocations</span><span class="on">Carnet</span></div>
+    <main>
+      <div class="seg"><span>Lore</span><span class="on">Histoire</span></div>
+      <div class="card edit-card new" style="outline-offset:-3px">
+        <div class="two" style="grid-template-columns:150px 1fr"><div class="field">📅 26/10/2026</div><div class="field"><b>Le marché noir</b></div></div>
+        <div class="field area" style="min-height:150px">Rencontre avec Sal, receleur du port. Il connaît l'homme en gris : un certain Varek, ancien mage de la garde.
+
+Prochaine séance : retrouver Varek à l'auberge du Pendu.|</div>
+        <div class="acts"><span class="sp"></span><span class="btn small primary">Terminé</span></div>
+      </div>
+      <div class="card item"><div class="sum2"><span class="date">12 oct. 2026</span><span class="t">L'embuscade du col</span><span class="chev">▾</span></div><p class="prev">Attaqués par des pillards au col de Brume…</p></div>
+      <div class="card item"><div class="sum2"><span class="date">28 sept. 2026</span><span class="t">Arrivée à Villea</span><span class="chev">▾</span></div><p class="prev">La garde nous a confisqué nos armes…</p></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 8. Histoire en mode édition -->
+<div class="shot">
+  <h2>8. Carnet en mode édition</h2>
+  <p class="cap">Avec le crayon : supprimer une séance ou une section (2 taps), réordonner les sections de Lore. Les séances restent triées par date.</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic edit-on">✓</span></header>
+    <div class="tabs"><span>Carac</span><span>Compétences</span><span>Invocations</span><span class="on">Carnet</span></div>
+    <div class="banner">Mode édition</div>
+    <main>
+      <div class="seg"><span>Lore</span><span class="on">Histoire</span></div>
+      <div class="card item"><div class="sum2"><span class="date">12 oct. 2026</span><span class="t">L'embuscade du col</span></div>
+        <div class="acts" style="padding:0 10px 10px"><span class="btn small">Modifier</span><span class="sp"></span><span class="btn small danger">Supprimer</span></div></div>
+      <div class="card item"><div class="sum2"><span class="date">28 sept. 2026</span><span class="t">Arrivée à Villea</span></div>
+        <div class="acts" style="padding:0 10px 10px"><span class="btn small">Modifier</span><span class="sp"></span><span class="btn small danger">Confirmer</span></div></div>
+      <div class="card item"><div class="sum2"><span class="date">14 sept. 2026</span><span class="t">Le pacte de l'Esprit des cendres</span></div>
+        <div class="acts" style="padding:0 10px 10px"><span class="btn small">Modifier</span><span class="sp"></span><span class="btn small danger">Supprimer</span></div></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 9. Invocations -->
+<div class="shot">
+  <h2>9. Invocations avec portraits</h2>
+  <p class="cap">Chaque créature peut avoir sa photo. Sans photo : son initiale.</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span>Carac</span><span>Compétences</span><span class="on">Invocations</span><span>Carnet</span></div>
+    <main>
+      <div class="head"><span class="label">2 créatures</span><span class="btn primary">+ Ajouter</span></div>
+      <div class="card cr new" style="outline-offset:-3px"><div class="thumb"><svg><use href="#volt"/></svg></div><div><b>Volt</b><div class="meta">Animal totem · Loup d'orage</div><div class="res"><span class="vie">Vie 22/25</span><span class="pp">PP 2/3</span></div></div></div>
+      <div class="card cr"><div class="thumb empty">E</div><div><b>Esprit des cendres</b><div class="meta">Invocation · Esprit</div><div class="res"><span class="vie">Vie 12/12</span><span class="pp">PP 4/4</span></div></div></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 10. Fiche créature -->
+<div class="shot">
+  <h2>10. Fiche d'une créature</h2>
+  <p class="cap">Même portrait que pour le personnage. Sans photo : un rond « + Photo ».</p>
+  <div class="phone light"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span>Carac</span><span>Compétences</span><span class="on">Invocations</span><span>Carnet</span></div>
+    <main>
+      <div class="row" style="align-items:center"><span class="btn small">← Invocations</span><b style="font-size:19px">Volt</b></div>
+      <div class="ident new"><div class="avatar"><svg><use href="#volt"/></svg></div><div><p class="sum" style="margin:0">Animal totem · Loup d'orage</p></div></div>
+      <div class="stats">
+        <div class="stat"><span class="n">ROBUSTESSE</span><div class="circle">10</div></div>
+        <div class="stat"><span class="n">ADRESSE</span><div class="circle">15</div></div>
+        <div class="stat"><span class="n">FINESSE</span><div class="circle">8</div></div>
+        <div class="stat"><span class="n">INTELLECT</span><div class="circle">4</div></div>
+        <div class="stat"><span class="n">VOLONTÉ</span><div class="circle">9</div></div>
+        <div class="stat"><span class="n">SAVOIR-FAIRE</span><div class="circle">1</div></div>
+      </div>
+      <div class="ident" style="margin-top:6px"><div class="avatar empty">+<br>Photo</div><div class="muted" style="font-size:14px">Ce que l'on voit sur une créature<br>sans photo (ex. Esprit des cendres)</div></div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 11. Sombre : Carac -->
+<div class="shot">
+  <h2>11. En thème sombre</h2>
+  <p class="cap">Le portrait et le Carnet suivent le thème du téléphone.</p>
+  <div class="phone dark"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span class="on">Carac</span><span>Compétences</span><span>Invocations</span><span>Carnet</span></div>
+    <main>
+      <div class="ident"><div class="avatar"><svg><use href="#aldric"/></svg></div><div><p class="titre">le Veilleur</p><p class="sum">Élémentalien · Foudre · 27 ans</p><div class="chips"><span class="chip">Pyromancie</span><span class="chip">Spiritisme</span></div></div></div>
+      <div class="stats">
+        <div class="stat"><span class="n">ROBUSTESSE</span><div class="circle down">12</div></div>
+        <div class="stat"><span class="n">ADRESSE</span><div class="circle up">21<span class="badge">+1</span></div></div>
+        <div class="stat"><span class="n">FINESSE</span><div class="circle">9</div></div>
+        <div class="stat"><span class="n">INTELLECT</span><div class="circle">12</div></div>
+        <div class="stat"><span class="n">VOLONTÉ</span><div class="circle">22<span class="badge">+2</span></div></div>
+        <div class="stat"><span class="n">SAVOIR-FAIRE</span><div class="circle">6</div></div>
+      </div>
+    </main>
+  </div></div>
+</div>
+
+<!-- 12. Sombre : Histoire -->
+<div class="shot">
+  <h2>12. Histoire en thème sombre</h2>
+  <p class="cap">&nbsp;</p>
+  <div class="phone dark"><div class="app">
+    <header><span class="ic">←</span><h1>Aldric</h1><span class="ic">✎</span></header>
+    <div class="tabs"><span>Carac</span><span>Compétences</span><span>Invocations</span><span class="on">Carnet</span></div>
+    <main>
+      <div class="seg"><span>Lore</span><span class="on">Histoire</span></div>
+      <div class="head"><span class="label">12 séances</span><span class="btn small primary">+ Séance</span></div>
+      <div class="card item"><div class="sum2"><span class="date">12 oct. 2026</span><span class="t">L'embuscade du col</span><span class="chev">▴</span></div>
+        <p class="full">Attaqués par des pillards au col de Brume. Volt a repéré leur piste avant l'aube.
+
+Mira a été blessée (Robustesse −2).</p></div>
+      <div class="card item"><div class="sum2"><span class="date">28 sept. 2026</span><span class="t">Arrivée à Villea</span><span class="chev">▾</span></div><p class="prev">La garde nous a confisqué nos armes…</p></div>
+      <div class="card item"><div class="sum2"><span class="date">14 sept. 2026</span><span class="t">Le pacte de l'Esprit des cendres</span><span class="chev">▾</span></div><p class="prev">Première invocation réussie…</p></div>
+    </main>
+  </div></div>
+</div>
+
+</div>
+</body>
+</html>
