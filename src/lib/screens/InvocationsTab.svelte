@@ -3,6 +3,7 @@
   import { addCreature, moveItem, removeById } from '../rules/lists'
   import { onBack } from '../ui/back'
   import Sheet from '../ui/Sheet.svelte'
+  import Thumb from '../ui/Thumb.svelte'
   import CreatureView from './CreatureView.svelte'
 
   // Liste des créatures (animaux totem, invocations, compagnons) → tap = fiche, + = nouvelle créature.
@@ -55,6 +56,8 @@
       {#each character.creatures as cr, i (cr.id)}
         <li>
           <button class="card item" onclick={() => (openId = cr.id)}>
+            <Thumb src={cr.photo?.miniature} nom={cr.nom} />
+            <span class="info">
             <span class="name">{cr.nom || 'Sans nom'}</span>
             {#if cr.type || cr.race}
               <span class="meta">{[cr.type, cr.race].filter(Boolean).join(' · ')}</span>
@@ -62,6 +65,7 @@
             <span class="res">
               <span class="vie">Vie {cr.ressources.vie.cur}/{cr.ressources.vie.max}</span>
               <span class="pp">PP {cr.ressources.pp.cur}/{cr.ressources.pp.max}</span>
+            </span>
             </span>
           </button>
           {#if editing}
@@ -108,10 +112,16 @@
   .item {
     flex: 1;
     min-width: 0;
-    display: grid;
-    gap: 2px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     text-align: left;
     padding: 10px 14px;
+  }
+  .info {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
   }
   .name {
     font-weight: 600;

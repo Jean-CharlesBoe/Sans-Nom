@@ -7,6 +7,7 @@
   import SkillList from '../components/SkillList.svelte'
   import CaracTab from './CaracTab.svelte'
   import InvocationsTab from './InvocationsTab.svelte'
+  import NotebookTab from './NotebookTab.svelte'
 
   let { id, onBack }: { id: string; onBack: () => void } = $props()
 
@@ -14,6 +15,7 @@
     ['carac', 'Carac'],
     ['competences', 'Compétences'],
     ['invocations', 'Invocations'],
+    ['carnet', 'Carnet'],
   ] as const
   type Tab = (typeof TABS)[number][0]
 
@@ -124,8 +126,10 @@
       <CaracTab {character} {editing} />
     {:else if tab === 'competences'}
       <SkillList owner={character} {editing} unit="mana" />
-    {:else}
+    {:else if tab === 'invocations'}
       <InvocationsTab {character} {editing} />
+    {:else}
+      <NotebookTab {character} {editing} />
     {/if}
   {/if}
 </main>
@@ -179,7 +183,8 @@
     border-radius: 0;
     background: none;
     color: var(--muted);
-    padding: 0 4px;
+    padding: 0 2px;
+    font-size: 0.9rem;
   }
   .tabs button.active {
     color: var(--text);

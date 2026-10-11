@@ -21,7 +21,7 @@ export function createWebRepository(): CharacterRepository {
   return {
     async list(): Promise<CharacterSummary[]> {
       return Object.values(readAll())
-        .map(c => ({ id: c.id, nom: c.nom, updatedAt: c.updatedAt }))
+        .map(c => ({ id: c.id, nom: c.nom, updatedAt: c.updatedAt, thumb: c.photo?.miniature ?? null }))
         .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
     },
     async get(id) {

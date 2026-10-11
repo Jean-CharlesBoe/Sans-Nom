@@ -7,6 +7,9 @@ import {
   STATS,
   type Character,
   type Creature,
+  type LoreSection,
+  type Photo,
+  type SessionEntry,
   type Resource,
   type Skill,
   type StatKey,
@@ -15,6 +18,7 @@ import {
 } from '../model/character'
 import { isRace } from './identity'
 import { normalizeCost } from './lists'
+import { isIsoDate, todayIso } from './notebook'
 import { clampInt, LIMITS } from './numbers'
 
 /**
@@ -56,6 +60,9 @@ export function normalizeCharacter(raw: unknown): { character: Character; warnin
   c.inventaire = str(r.inventaire, LIMITS.textLong)
   c.competences = skills(r.competences)
   c.creatures = arr(r.creatures).map(x => creature(x, w))
+  c.photo = photo(r.photo, w, '')
+  c.lore = lore(r.lore)
+  c.histoire = sessions(r.histoire, w)
   c.schemaVersion = SCHEMA_VERSION
   return { character: c, warnings: w }
 }
@@ -67,6 +74,7 @@ function creature(raw: unknown, w: string[]): Creature {
   cr.id = typeof r.id === 'string' && r.id ? r.id : newId()
   cr.race = str(r.race, LIMITS.textShort)
   cr.type = str(r.type, LIMITS.textShort)
+  cr.photo = photo(r.photo, w, who)
   cr.stats = stats(r.stats, w, who)
   cr.bonusTemporaires = bonuses(r.bonusTemporaires)
   const res = obj(r.ressources)
@@ -110,6 +118,48 @@ function resource(raw: unknown, label: string, w: string[], who: string): Resour
   const cur = Math.min(cur0, max)
   if (cur !== cur0) w.push(`${who}${label} actuelle (${cur0}) ramenée au maximum (${max})`)
   return { cur, max, regeneration: str(r.regeneration, LIMITS.textShort) }
+}
+
+const PHOTO_RE = /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/
+
+function photo(raw: unknown, w: string[], who: string): Photo | null {
+  if (raw === null || raw === undefined) return null
+  const r = obj(raw)
+  const ok = (v: unknown, max: number) => typeof v === 'string' && v.length <= max && PHOTO_RE.test(v)
+  if (ok(r.image, LIMITS.photoImage) && ok(r.miniature, LIMITS.photoMiniature)) {
+    return { image: r.image as string, miniature: r.miniature as string }
+  }
+  w.push(`${who}photo illisible ou trop lourde, ignorée`)
+  return null
+}
+
+function lore(raw: unknown): LoreSection[] {
+  return arr(raw)
+    .map(obj)
+    .map(s => ({
+      id: typeof s.id === 'string' && s.id ? s.id : newId(),
+      titre: str(s.titre, LIMITS.textShort),
+      texte: str(s.texte, LIMITS.textChapter),
+    }))
+}
+
+function sessions(raw: unknown, w: string[]): SessionEntry[] {
+  return arr(raw)
+    .map(obj)
+    .map(e => {
+      const titre = str(e.titre, LIMITS.textShort)
+      let date = e.date
+      if (!isIsoDate(date)) {
+        w.push(`séance « ${titre || 'sans titre'} » : date « ${String(date)} » invalide, remplacée par aujourd'hui`)
+        date = todayIso()
+      }
+      return {
+        id: typeof e.id === 'string' && e.id ? e.id : newId(),
+        date: date as string,
+        titre,
+        texte: str(e.texte, LIMITS.textChapter),
+      }
+    })
 }
 
 function skills(raw: unknown): Skill[] {

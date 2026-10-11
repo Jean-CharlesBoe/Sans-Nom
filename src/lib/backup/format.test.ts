@@ -15,6 +15,16 @@ describe('sauvegarde', () => {
     expect(characters).toHaveLength(2)
   })
 
+  it('conserve photo, Lore et Histoire', () => {
+    const c = createCharacter('Aldric')
+    c.photo = { image: 'data:image/jpeg;base64,/9j/4AAQ', miniature: 'data:image/jpeg;base64,/9j/4BBQ' }
+    c.lore.push({ id: 'l1', titre: 'Origines', texte: 'Né à Varhal.' })
+    c.histoire.push({ id: 's1', date: '2026-10-12', titre: "L'embuscade du col", texte: 'Pillards.' })
+    const { characters, warnings } = parseBackup(JSON.stringify(buildBackup([c], '0.5.0')))
+    expect(warnings).toEqual([])
+    expect(characters[0]).toEqual(c)
+  })
+
   it('refuse un fichier qui n’est pas une sauvegarde', () => {
     expect(() => parseBackup('pas du json')).toThrow(/illisible/)
     expect(() => parseBackup('{"nom":"Eloy"}')).toThrow(/pas une sauvegarde/)
@@ -45,7 +55,7 @@ describe('sauvegarde', () => {
 
 describe('rappel de sauvegarde', () => {
   const now = new Date(2026, 9, 20, 12)
-  const summary = (updatedAt: string) => [{ id: '1', nom: 'Eloy', updatedAt }]
+  const summary = (updatedAt: string) => [{ id: '1', nom: 'Eloy', updatedAt, thumb: null }]
 
   it('ne dit rien sans personnage', () => {
     expect(backupStatus(null, [], now)).toEqual({ warn: false, text: '' })

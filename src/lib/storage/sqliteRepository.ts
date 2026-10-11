@@ -17,6 +17,8 @@ const MIGRATIONS: string[] = [
      updated_at TEXT NOT NULL,
      data TEXT NOT NULL
    );`,
+  // v0.5 : miniature de la photo, pour la liste d'accueil sans lire toute la fiche
+  `ALTER TABLE characters ADD COLUMN thumb TEXT;`,
 ]
 
 async function schemaVersion(db: SQLiteDBConnection): Promise<number> {
@@ -49,8 +51,13 @@ export async function openSqliteRepository(): Promise<CharacterRepository> {
 
   return {
     async list(): Promise<CharacterSummary[]> {
-      const r = await db.query(`SELECT id, nom, updated_at FROM characters ORDER BY updated_at DESC`)
-      return (r.values ?? []).map(row => ({ id: row.id, nom: row.nom, updatedAt: row.updated_at }))
+      const r = await db.query(`SELECT id, nom, updated_at, thumb FROM characters ORDER BY updated_at DESC`)
+      return (r.values ?? []).map(row => ({
+        id: row.id,
+        nom: row.nom,
+        updatedAt: row.updated_at,
+        thumb: row.thumb ?? null,
+      }))
     },
     async get(id) {
       const r = await db.query(`SELECT data FROM characters WHERE id = ?`, [id])
@@ -61,9 +68,10 @@ export async function openSqliteRepository(): Promise<CharacterRepository> {
     },
     async save(c) {
       await db.run(
-        `INSERT INTO characters (id, nom, updated_at, data) VALUES (?, ?, ?, ?)
-           ON CONFLICT(id) DO UPDATE SET nom = excluded.nom, updated_at = excluded.updated_at, data = excluded.data`,
-        [c.id, c.nom, c.updatedAt, JSON.stringify(c)],
+        `INSERT INTO characters (id, nom, updated_at, data, thumb) VALUES (?, ?, ?, ?, ?)
+           ON CONFLICT(id) DO UPDATE SET nom = excluded.nom, updated_at = excluded.updated_at,
+             data = excluded.data, thumb = excluded.thumb`,
+        [c.id, c.nom, c.updatedAt, JSON.stringify(c), c.photo?.miniature ?? null],
       )
     },
     async remove(id) {

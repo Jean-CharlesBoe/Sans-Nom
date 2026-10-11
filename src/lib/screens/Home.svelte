@@ -3,6 +3,7 @@
   import BackupPanel from '../components/BackupPanel.svelte'
   import { createCharacter, type CharacterSummary } from '../model/character'
   import { getRepository } from '../storage/repository'
+  import Thumb from '../ui/Thumb.svelte'
 
   let { onOpen }: { onOpen: (id: string) => void } = $props()
 
@@ -84,8 +85,11 @@
       {#each characters as c (c.id)}
         <li>
           <button class="open" onclick={() => onOpen(c.id)}>
-            <span class="name">{c.nom}</span>
-            <span class="muted small">Modifié le {fmtDate(c.updatedAt)}</span>
+            <Thumb src={c.thumb} nom={c.nom} />
+            <span class="info">
+              <span class="name">{c.nom}</span>
+              <span class="muted small">Modifié le {fmtDate(c.updatedAt)}</span>
+            </span>
           </button>
           <button class="danger" onclick={() => remove(c.id)} aria-label="Supprimer {c.nom}">
             {confirmDelete === c.id ? 'Confirmer' : 'Supprimer'}
@@ -139,10 +143,15 @@
     flex: 1;
     min-width: 0;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 14px;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
     text-align: left;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
   }
   .name {
     font-weight: 600;

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { RACES, type Character, type Race } from '../model/character'
+  import PhotoAvatar from './PhotoAvatar.svelte'
   import { addPratique, availablePratiques, needsElement, removePratique, setRace } from '../rules/identity'
 
   let { character, editing }: { character: Character; editing: boolean } = $props()
@@ -32,10 +33,13 @@
 
 {#if editing}
   <div class="form">
-    <label class="wide">
-      <span class="label">Nom</span>
-      <input bind:value={character.nom} maxlength="120" autocomplete="off" />
-    </label>
+    <div class="wide photo-row">
+      <PhotoAvatar owner={character} {editing} />
+      <label>
+        <span class="label">Nom</span>
+        <input bind:value={character.nom} maxlength="120" autocomplete="off" />
+      </label>
+    </div>
     <label class="wide">
       <span class="label">Titre</span>
       <input bind:value={character.titre} maxlength="120" placeholder="ex. le Doré" autocomplete="off" />
@@ -86,6 +90,8 @@
   </div>
 {:else}
   <div class="view">
+    <PhotoAvatar owner={character} {editing} />
+    <div class="text">
     {#if character.titre}<p class="titre">{character.titre}</p>{/if}
     {#if summary}<p class="summary">{summary}</p>{/if}
     {#if character.pratiques.length}
@@ -98,10 +104,27 @@
     {#if !character.titre && !summary && !character.pratiques.length}
       <p class="summary muted">Race, âge, pratiques… : touche le crayon pour remplir.</p>
     {/if}
+    </div>
   </div>
 {/if}
 
 <style>
+  .view {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .text {
+    min-width: 0;
+  }
+  .photo-row {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+  }
+  .photo-row label {
+    flex: 1;
+  }
   .form {
     display: grid;
     grid-template-columns: 1fr 1fr;

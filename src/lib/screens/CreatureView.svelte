@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PhotoAvatar from '../components/PhotoAvatar.svelte'
   import ResourceDiamond from '../components/ResourceDiamond.svelte'
   import SkillList from '../components/SkillList.svelte'
   import StatGrid from '../components/StatGrid.svelte'
@@ -29,10 +30,13 @@
 <div class="view">
   {#if editing}
     <div class="form">
-      <label class="wide">
-        <span class="label">Nom</span>
-        <input bind:value={creature.nom} maxlength="120" autocomplete="off" />
-      </label>
+      <div class="wide photo-row">
+        <PhotoAvatar owner={creature} {editing} />
+        <label>
+          <span class="label">Nom</span>
+          <input bind:value={creature.nom} maxlength="120" autocomplete="off" />
+        </label>
+      </div>
       <label>
         <span class="label">Type</span>
         <input bind:value={creature.type} list="creature-types" maxlength="120" placeholder="ex. Animal totem" autocomplete="off" />
@@ -48,7 +52,10 @@
       </label>
     </div>
   {:else}
-    <p class="summary">{summary || 'Type et race : touche le crayon pour remplir.'}</p>
+    <div class="ident">
+      <PhotoAvatar owner={creature} {editing} />
+      <p class="summary">{summary || 'Type et race : touche le crayon pour remplir.'}</p>
+    </div>
   {/if}
 
   <section aria-label="Caractéristiques de {creature.nom}">
@@ -100,6 +107,19 @@
   }
   .wide {
     grid-column: 1 / -1;
+  }
+  .ident {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .photo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .photo-row label {
+    flex: 1;
   }
   .summary {
     margin: 0;

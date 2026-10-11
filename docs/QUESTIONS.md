@@ -39,3 +39,5 @@ _(aucune)_
 - **Q 28. Dépôt** → public, nommé « Sans Nom » (nom du JDR) → `Sans-Nom` sur GitHub (pas d'espace possible).
 - **Q 29. Chromebook** → non, téléphones Android uniquement.
 - **Q 30. Outils** → Node.js LTS et Android Studio installés le 2026-10-08.
+- **Q 31. Lore / Histoire (v0.5)** → 4e onglet « Carnet » avec sous-onglets Lore et Histoire ; Lore en sections titrées ; Histoire en une entrée par séance (date + titre + texte). Écrire sans le crayon : oui.
+- **Q 32. Photo (v0.5)** → pour le personnage et chaque créature ; changer ou retirer : en mode édition seulement.

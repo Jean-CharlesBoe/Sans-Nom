@@ -1,6 +1,6 @@
 # Roadmap
 
-Étape en cours : **7 — Finitions**
+Étape en cours : **8 — v0.5 : photo, Carnet**
 
 | # | Étape | Contenu | Statut |
 |---|---|---|---|
@@ -12,6 +12,7 @@
 | 5 | Invocations | Liste + fiche créature (caracs, Vie, PP, compétences en PP) | fait |
 | 6 | Sauvegarde | Export JSON via feuille de partage Android, import, rappel de sauvegarde, vérification du backup Android, test de mise à jour par-dessus une version précédente | fait (sauf vérifs sur appareil) |
 | 7 | Finitions | Mode sombre, tests sur les téléphones des joueurs, première Release publique de l'APK + notice d'installation, icône | en cours |
+| 8 | v0.5 : photo, Carnet | Maquettes validées, photo perso/créatures, onglet Carnet (Lore, Histoire), format v2, migration SQLite 2, notice | en cours |
 
 ## Journal des sessions
 
@@ -48,3 +49,9 @@
 - Retour utilisateur : icône et écran de démarrage OK sur son téléphone (v0.4.0).
 - Notice (PDF + INSTALLATION.md) : installation depuis un APK envoyé sur Discord (l'utilisateur diffuse l'app ainsi), lien Releases en alternative, icône affichée.
 - En attente : tests chez les autres joueurs.
+
+### Session 2 · 2026-10-11
+- Retours des joueurs : photo du personnage, Lore, Histoire des séances.
+- Maquettes (`docs/maquettes/v0.5.html` → `v0.5.png`, 12 écrans) validées par l'utilisateur ; choix : onglet Carnet (Lore | Histoire), Lore en sections, Histoire par séance, photo perso + créatures, photo modifiable en mode édition seulement, Carnet modifiable sans le crayon (D9).
+- Réalisé : modèle v2 (`photo`, `lore`, `histoire`), `rules/notebook.ts` (+ tests), normalisation (photo, dates), migration SQLite 2 (`thumb`), `photo/resize.ts`, composants `PhotoAvatar`, `Thumb`, `NoteList`, écran `NotebookTab`. 40 tests verts ; parcours complet vérifié dans le navigateur (photo perso et créature, miniatures, Lore, séances, mode jeu, rechargement).
+- À vérifier sur téléphone : appareil photo / galerie, migration SQLite 2 lors de la mise à jour par-dessus v0.4.0.

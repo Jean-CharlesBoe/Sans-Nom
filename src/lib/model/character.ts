@@ -1,7 +1,8 @@
 // Modèle de données d'un personnage (voir docs/CAHIER_DES_CHARGES.md §5).
 // Un personnage, avec ses créatures, est stocké comme un seul document JSON.
 
-export const SCHEMA_VERSION = 1
+// v2 : photo, lore, histoire
+export const SCHEMA_VERSION = 2
 
 export const STATS = [
   ['robustesse', 'Robustesse'],
@@ -70,11 +71,34 @@ export interface Skill {
   description: string
 }
 
+/** Photo recadrée en carré (JPEG en data URL) et sa miniature pour les listes. */
+export interface Photo {
+  image: string
+  miniature: string
+}
+
+/** Section du Lore (Origines, Famille…). */
+export interface LoreSection {
+  id: string
+  titre: string
+  texte: string
+}
+
+/** Entrée de l'Histoire : une séance de jeu. */
+export interface SessionEntry {
+  id: string
+  /** AAAA-MM-JJ */
+  date: string
+  titre: string
+  texte: string
+}
+
 export interface Creature {
   id: string
   nom: string
   race: string
   type: string
+  photo: Photo | null
   stats: Stats
   bonusTemporaires: TempBonus[]
   ressources: { vie: Resource; pp: Resource }
@@ -102,6 +126,9 @@ export interface Character {
   inventaire: string
   competences: Skill[]
   creatures: Creature[]
+  photo: Photo | null
+  lore: LoreSection[]
+  histoire: SessionEntry[]
 }
 
 /** Résumé affiché dans la liste d'accueil. */
@@ -109,6 +136,8 @@ export interface CharacterSummary {
   id: string
   nom: string
   updatedAt: string
+  /** Miniature de la photo (data URL), ou null. */
+  thumb: string | null
 }
 
 export function newId(): string {
@@ -142,6 +171,9 @@ export function createCharacter(nom: string): Character {
     inventaire: '',
     competences: [],
     creatures: [],
+    photo: null,
+    lore: [],
+    histoire: [],
   }
 }
 
@@ -151,6 +183,7 @@ export function createCreature(nom: string): Creature {
     nom,
     race: '',
     type: '',
+    photo: null,
     stats: emptyStats(),
     bonusTemporaires: [],
     ressources: { vie: resource(), pp: resource() },

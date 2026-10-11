@@ -61,3 +61,9 @@ Les noms de variables/fichiers en anglais (`character`, `stats`), les textes aff
 - La date de dernière sauvegarde est notée (table `meta`) quand le partage aboutit (annulation = pas notée). Rappel rouge à l'accueil si modifications et ≥ 7 jours.
 - Import : chaque personnage passe par `normalizeCharacter` ; pour un identifiant déjà présent, choix Remplacer / Garder les deux (copie avec nouvel identifiant) / Ignorer. Un fichier d'une version de format plus récente est refusé avec un message.
 - Pas d'import du format de la v0 (`fiche-perso.html`) : pas de besoin exprimé.
+
+## D9 · 2026-10-11 · Photo et Carnet (v0.5) — *validée (maquettes)*
+- **Photo** stockée dans la fiche en data URL JPEG (carré 512 px, qualité 0,85, ~50–80 Ko) + miniature 96 px. Elle voyage donc avec la fiche dans la sauvegarde. La miniature est aussi copiée dans la colonne SQLite `thumb` (migration 2) pour que l'accueil n'ait pas à lire toutes les fiches. Choix du fichier par `<input type="file" accept="image/*">` : Android propose appareil photo ou galerie, sans permission à déclarer. Seules les data URL `image/jpeg|png|webp` en base64 sont acceptées au chargement.
+- **Carnet** : un composant unique `NoteList` pour le Lore et l'Histoire (option `dated`). Les séances sont affichées triées par date (plus récente en haut) sans modifier l'ordre stocké ; les sections de Lore gardent l'ordre choisi.
+- **Format** : `SCHEMA_VERSION` 2 ; une fiche v1 se charge avec photo nulle, Lore et Histoire vides.
+- L'onglet Carnet a été préféré à deux onglets séparés (5 onglets trop serrés sur téléphone).

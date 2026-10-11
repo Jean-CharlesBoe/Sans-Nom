@@ -19,7 +19,7 @@ Remplacer la fiche Google Sheet et le prototype HTML par une application utilisa
 ## 3. Écrans
 
 Accueil : liste des personnages (créer, ouvrir, supprimer, exporter, importer).
-Dans un personnage, onglets en haut : **`Carac | Compétences | Invocations`**.
+Dans un personnage, onglets en haut : **`Carac | Compétences | Invocations | Carnet`** (Carnet ajouté en v0.5, maquettes : `docs/maquettes/v0.5.png`).
 
 Deux modes : **jeu** (par défaut : ressources, bonus temporaires, XP) et **édition** (bouton crayon : valeurs des caracs, maximums, textes, ajout/suppression).
 
@@ -51,6 +51,17 @@ Regroupe animaux totem, invocations et animaux de compagnie.
   - **Équipement + Inventaire** (texte libre) ;
   - **Compétences** : titre, **coût en PP**, description.
 
+### 3.4 Carnet (v0.5)
+
+Deux sous-onglets **Lore | Histoire**.
+- **Lore** : sections titrées (titre + texte long), repliées avec aperçu, « + Section », réordonnables.
+- **Histoire** : une entrée par séance (date + titre + texte), la plus récente en haut, « + Séance » crée une entrée datée du jour.
+- Écrire et ajouter : à tout moment (mode jeu compris). Supprimer et réordonner : mode édition.
+
+### 3.5 Photo (v0.5)
+
+Portrait rond du personnage (onglet Carac) et de chaque créature ; miniature dans la liste d'accueil et dans la liste des créatures (initiale à défaut). Un tap montre la photo en grand. **Ajouter, changer ou retirer : en mode édition uniquement.** Photo recadrée en carré et réduite (512 px, JPEG), incluse dans la sauvegarde.
+
 ## 4. Règles du jeu
 
 | Élément | Règle |
@@ -79,17 +90,20 @@ Personnage
  ├─ xp : number
  ├─ equipement : string, inventaire : string
  ├─ competences[] : { id, titre, cout?, description }
+ ├─ photo : { image, miniature } | null        (v2)
+ ├─ lore[] : { id, titre, texte }               (v2)
+ ├─ histoire[] : { id, date AAAA-MM-JJ, titre, texte }   (v2)
  └─ creatures[] :
-      { id, nom, race, type,
+      { id, nom, race, type, photo,
         caracs, bonusTemporaires[],
         ressources : { vie, pp },
         equipement, inventaire,
         competences[] }
 ```
 
-Stockage SQLite : une table `characters` (id, nom, updated_at, data JSON du personnage complet avec ses créatures) + une table `meta` (version du schéma, date de dernière sauvegarde). Stocker le personnage en JSON garde le modèle souple ; les colonnes séparées servent à la liste d'accueil.
+Stockage SQLite : une table `characters` (id, nom, updated_at, thumb = miniature de la photo depuis la migration 2, data JSON du personnage complet avec ses créatures) + une table `meta` (version du schéma, date de dernière sauvegarde). Stocker le personnage en JSON garde le modèle souple ; les colonnes séparées servent à la liste d'accueil.
 Export = un fichier JSON par personnage, même format que la colonne `data`.
 
 ## 6. Hors périmètre
 
-Synchronisation entre joueurs, partage avec le MJ, lanceur de dés, Lore / Histoire / Dessins, portrait, impression, mémos de règles, notes de relations, gestion de l'argent ou du poids, schéma du corps.
+Synchronisation entre joueurs, partage avec le MJ, lanceur de dés, Dessins, impression, mémos de règles, notes de relations, gestion de l'argent ou du poids, schéma du corps.
