@@ -26,9 +26,9 @@
   .tip { background: var(--soft); border-left: 4px solid var(--accent); padding: 2.5mm 4mm; border-radius: 0 2mm 2mm 0; margin: 3mm 0; }
   .warn { background: #fdf0ef; border-left: 4px solid var(--down); padding: 2.5mm 4mm; border-radius: 0 2mm 2mm 0; margin: 3mm 0; }
   .kbd { display: inline-block; padding: 0 2mm; border: 1px solid var(--line); border-radius: 1.5mm; background: #fff; font-weight: 600; }
-  .cover { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 18mm; }
-  .cover .sub { font-size: 14pt; color: var(--muted); margin: 2mm 0 10mm; }
-  .cover figure img { width: 62mm; }
+  .cover { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 6mm; }
+  .cover .sub { font-size: 14pt; color: var(--muted); margin: 2mm 0 7mm; }
+  .cover figure img { width: 56mm; }
   .toc { margin-top: 10mm; text-align: left; font-size: 11pt; }
   .toc ol { padding-left: 6mm; }
   .tag { font-weight: 600; }
@@ -55,6 +55,8 @@
       <li>Le mode édition</li>
       <li>L'onglet Compétences</li>
       <li>L'onglet Invocations</li>
+      <li>La photo du personnage et des créatures</li>
+      <li>L'onglet Carnet : Lore et Histoire</li>
       <li>Sauvegarder et retrouver ses fiches</li>
     </ol>
   </div>
@@ -87,10 +89,10 @@
   <p>Quand une nouvelle version est postée sur Discord, refais les étapes 1 à 3 puis touche <b>Mettre à jour</b> (ou <b>Installer</b>). La nouvelle version s'installe <b>par-dessus</b> l'ancienne et <b>garde tous tes personnages</b>. Le numéro de version installé est écrit en bas de l'écran d'accueil de l'app.</p>
   <p>Sans Discord, la dernière version se télécharge aussi sur <b>github.com/Jean-CharlesBoe/Sans-Nom/releases/latest</b> (fichier <b>.apk</b> dans la partie <i>Assets</i>).</p>
 
-  <div class="warn"><b>Ne désinstalle jamais l'app pour la mettre à jour</b> : désinstaller efface les fiches enregistrées sur le téléphone. Si tu dois vraiment la désinstaller, fais d'abord une sauvegarde (voir partie 8).</div>
+  <div class="warn"><b>Ne désinstalle jamais l'app pour la mettre à jour</b> : désinstaller efface les fiches enregistrées sur le téléphone. Si tu dois vraiment la désinstaller, fais d'abord une sauvegarde (voir partie 10).</div>
 
   <h3>Où sont mes données ?</h3>
-  <p>Tes personnages sont enregistrés <b>dans le téléphone</b>, pas sur internet : l'app fonctionne sans connexion, et personne d'autre n'y a accès. En contrepartie, c'est à toi de faire des sauvegardes de temps en temps (un seul bouton, partie 8).</p>
+  <p>Tes personnages sont enregistrés <b>dans le téléphone</b>, pas sur internet : l'app fonctionne sans connexion, et personne d'autre n'y a accès. En contrepartie, c'est à toi de faire des sauvegardes de temps en temps (un seul bouton, partie 10).</p>
 </section>
 
 <!-- 2. Accueil -->
@@ -101,10 +103,10 @@
       <p>C'est la liste de tes personnages.</p>
       <ul>
         <li><b>Créer un personnage</b> : écris son nom dans le champ du haut et touche <span class="kbd">Créer</span>. Sa fiche s'ouvre directement.</li>
-        <li><b>Ouvrir une fiche</b> : touche le nom du personnage.</li>
+        <li><b>Ouvrir une fiche</b> : touche le nom du personnage. Sa photo (ou son initiale) l'identifie d'un coup d'œil.</li>
         <li><b>Supprimer</b> : touche <span class="kbd">Supprimer</span> puis, pour confirmer, <span class="kbd">Confirmer</span> dans les 4 secondes. La suppression est définitive.</li>
       </ul>
-      <p>En dessous, la carte <b>Sauvegarde</b> indique la date de ta dernière sauvegarde et permet de sauvegarder ou d'importer tes fiches (voir partie 8). Elle devient <b class="down">rouge</b> si tu as modifié une fiche et n'as pas sauvegardé depuis plus de 7 jours.</p>
+      <p>En dessous, la carte <b>Sauvegarde</b> indique la date de ta dernière sauvegarde et permet de sauvegarder ou d'importer tes fiches (voir partie 10). Elle devient <b class="down">rouge</b> si tu as modifié une fiche et n'as pas sauvegardé depuis plus de 7 jours.</p>
       <p>Tout en bas : le numéro de version de l'app.</p>
       <div class="tip">Le bouton <b>retour</b> du téléphone ferme d'abord une fenêtre ouverte, puis revient à la liste, puis quitte l'app.</div>
     </div>
@@ -115,13 +117,13 @@
 <!-- 3. Carac -->
 <section class="page">
   <h2>3. La fiche : onglet Carac</h2>
-  <p>En haut, la flèche <b>←</b> revient à la liste, et le <b>crayon ✎</b> passe en mode édition (partie 5). Juste en dessous, trois onglets : <b>Carac</b>, <b>Compétences</b>, <b>Invocations</b>. <b>Tout s'enregistre automatiquement</b>, il n'y a pas de bouton « Enregistrer ».</p>
+  <p>En haut, la flèche <b>←</b> revient à la liste, et le <b>crayon ✎</b> passe en mode édition (partie 5). Juste en dessous, quatre onglets : <b>Carac</b>, <b>Compétences</b>, <b>Invocations</b> et <b>Carnet</b>. <b>Tout s'enregistre automatiquement</b>, il n'y a pas de bouton « Enregistrer ».</p>
   <div class="shots">
     <figure><img src="img/02-carac-jeu.jpg" alt="Onglet Carac, haut"><figcaption>Identité, caractéristiques et bonus temporaires.</figcaption></figure>
     <figure><img src="img/03-carac-bas.jpg" alt="Onglet Carac, bas"><figcaption>Ressources, XP, équipement et inventaire.</figcaption></figure>
   </div>
   <h3>Identité</h3>
-  <p>Titre, race, élément (pour un Élémentalien), âge et pratiques immatérielles.</p>
+  <p>Le portrait du personnage (partie 8), son titre, sa race, son élément (pour un Élémentalien), son âge et ses pratiques immatérielles.</p>
   <h3>Les 8 caractéristiques</h3>
   <ul>
     <li>Le chiffre dans le cercle est la <b>valeur finale</b>, bonus temporaires compris. Il est <b class="up">vert</b> quand un bonus s'applique, <b class="down">rouge</b> quand c'est un malus.</li>
@@ -167,7 +169,7 @@
     <figure><img src="img/09-edition-ressource.jpg" alt="Maximum et régénération"><figcaption>Dans un losange : maximum et régénération.</figcaption></figure>
   </div>
   <ul>
-    <li><b>Identité</b> : nom, titre (le nom obtenu en jeu), race, âge, élément si Élémentalien. Pour les <b>pratiques immatérielles</b>, choisis dans la liste « + Ajouter une pratique » (ou « Autre… » pour un nom libre) ; le <b>✕</b> d'une étiquette la retire.</li>
+    <li><b>Identité</b> : photo (partie 8), nom, titre (le nom obtenu en jeu), race, âge, élément si Élémentalien. Pour les <b>pratiques immatérielles</b>, choisis dans la liste « + Ajouter une pratique » (ou « Autre… » pour un nom libre) ; le <b>✕</b> d'une étiquette la retire.</li>
     <li><b>Caracs</b> : en mode édition, le cercle en pointillés montre la <b>valeur de base</b> (sans les bonus). Les boutons − / + la modifient. La ligne <b>Av.</b> règle les avantages (positif) ou désavantages (négatif).</li>
     <li><b>Ressources</b> : touche un losange ; en bas de la fenêtre, règle le <b>Maximum</b> et la <b>Régénération</b> (ex. « 2D6 »).</li>
   </ul>
@@ -195,7 +197,7 @@
 <!-- 7. Invocations -->
 <section class="page">
   <h2>7. L'onglet Invocations</h2>
-  <p>Il regroupe les <b>animaux totem</b>, les <b>invocations</b> et les <b>animaux de compagnie</b>, sans limite de nombre.</p>
+  <p>Il regroupe les <b>animaux totem</b>, les <b>invocations</b> et les <b>animaux de compagnie</b>, sans limite de nombre. Chaque créature peut avoir sa photo, ajoutée comme celle du personnage (partie 8).</p>
   <div class="shots small">
     <figure><img src="img/12-invocations-liste.jpg" alt="Liste des créatures"><figcaption>La liste, avec la Vie et les PP de chacune.</figcaption></figure>
     <figure><img src="img/13-creature.jpg" alt="Fiche d'une créature"><figcaption>La fiche d'une créature.</figcaption></figure>
@@ -209,9 +211,53 @@
   </ul>
 </section>
 
-<!-- 8. Sauvegarde -->
+<!-- 8. Photo -->
 <section class="page">
-  <h2>8. Sauvegarder et retrouver ses fiches</h2>
+  <h2>8. La photo du personnage et des créatures</h2>
+  <div class="row">
+    <div class="text">
+      <p>Le portrait s'affiche en rond dans l'onglet <b>Carac</b> (à gauche de l'identité), sur la fiche de chaque créature, et en miniature à l'accueil et dans la liste des invocations. Sans photo, c'est l'initiale du nom qui s'affiche.</p>
+      <h3>Voir la photo</h3>
+      <p>Touche le portrait : la photo s'ouvre en grand.</p>
+      <h3>Ajouter, changer ou retirer (mode édition)</h3>
+      <ol>
+        <li>Touche le <b>crayon ✎</b>.</li>
+        <li>Sans photo, touche le rond <b>« + Photo »</b>. Avec une photo, touche le portrait puis <span class="kbd">Changer la photo</span>.</li>
+        <li>Android propose de <b>prendre une photo</b> ou de <b>choisir une image</b> dans la galerie.</li>
+        <li>L'image est recadrée en carré (le centre est gardé) et allégée automatiquement.</li>
+      </ol>
+      <p><span class="kbd">Retirer</span> puis <span class="kbd">Confirmer</span> enlève la photo.</p>
+      <div class="tip">Les photos sont incluses dans le fichier de sauvegarde (partie 10) : elles suivent tes personnages sur un nouveau téléphone.</div>
+    </div>
+    <figure><img src="img/16-photo.jpg" alt="Photo en grand, mode édition"><figcaption>La photo en grand, en mode édition.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 9. Carnet -->
+<section class="page">
+  <h2>9. L'onglet Carnet : Lore et Histoire</h2>
+  <p>Deux boutons en haut de l'onglet : <b>Lore</b> pour l'histoire de ton personnage avant l'aventure, <b>Histoire</b> pour noter les événements marquants de chaque séance.</p>
+  <div class="shots small">
+    <figure><img src="img/17-lore.jpg" alt="Lore"><figcaption>Le Lore : une carte par section.</figcaption></figure>
+    <figure><img src="img/18-histoire.jpg" alt="Histoire"><figcaption>L'Histoire : une entrée par séance.</figcaption></figure>
+    <figure><img src="img/19-seance.jpg" alt="Noter une séance"><figcaption>Noter une séance.</figcaption></figure>
+  </div>
+  <h3>Lore</h3>
+  <ul>
+    <li><span class="kbd">+ Section</span> ajoute une section : donne-lui un titre (Origines, Famille, Croyances…), écris le texte, puis <span class="kbd">Terminé</span>.</li>
+    <li>Les sections sont repliées avec un aperçu de leur 1re ligne : touche-en une pour lire tout le texte, puis <span class="kbd">✎ Écrire</span> pour la compléter.</li>
+  </ul>
+  <h3>Histoire</h3>
+  <ul>
+    <li><span class="kbd">+ Séance</span> crée une entrée <b>datée du jour</b> (date modifiable), prête à écrire : idéal pendant ou juste après la partie.</li>
+    <li>Les séances sont rangées par date, <b>la plus récente en haut</b>.</li>
+  </ul>
+  <div class="tip">Écrire et ajouter se fait à tout moment, même en partie. Avec le <b>crayon ✎</b> : <span class="kbd">Modifier</span>, <span class="kbd">Supprimer</span> (puis <span class="kbd">Confirmer</span>) et, pour le Lore, les flèches <span class="kbd">↑</span> <span class="kbd">↓</span> pour changer l'ordre des sections.</div>
+</section>
+
+<!-- 10. Sauvegarde -->
+<section class="page">
+  <h2>10. Sauvegarder et retrouver ses fiches</h2>
   <div class="row">
     <div class="text">
       <p>Les fiches survivent aux mises à jour de l'app, mais <b>pas à une désinstallation, ni à la perte ou au changement de téléphone</b>. Le fichier de sauvegarde te protège dans tous ces cas.</p>
@@ -220,7 +266,7 @@
         <li>Écran d'accueil → carte <b>Sauvegarde</b> → <span class="kbd">Sauvegarder</span>.</li>
         <li>La fenêtre de partage d'Android s'ouvre : choisis <b>Drive</b> (ou envoie-toi le fichier par mail ou message).</li>
       </ol>
-      <p>Le fichier, nommé <b>sansnom-sauvegarde-AAAA-MM-JJ.json</b>, contient <b>tous</b> tes personnages avec leurs créatures. Fais-le régulièrement, par exemple après chaque séance.</p>
+      <p>Le fichier, nommé <b>sansnom-sauvegarde-AAAA-MM-JJ.json</b>, contient <b>tous</b> tes personnages avec leurs créatures, leurs photos, leur Lore et leur Histoire. Fais-le régulièrement, par exemple après chaque séance.</p>
       <h3>Importer (nouveau téléphone, réinstallation…)</h3>
       <ol>
         <li>Installe l'app (partie 1).</li>

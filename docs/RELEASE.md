@@ -139,4 +139,4 @@ Source : `docs/notice/notice.html` + captures dans `docs/notice/img/` (format t�
 & "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu --no-pdf-header-footer --user-data-dir="$env:TEMP\edge-pdf" --print-to-pdf="C:\Repos\Sans Nom\docs\Notice-Sans-Nom.pdf" "file:///C:/Repos/Sans%20Nom/docs/notice/notice.html"
 ```
 
-Chaque section tient sur une page A4 : vérifier que le PDF a toujours une page par section (9 actuellement).
+Chaque section tient sur une page A4 : vérifier que le PDF a toujours une page par section (11 actuellement).

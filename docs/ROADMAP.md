@@ -54,4 +54,6 @@
 - Retours des joueurs : photo du personnage, Lore, Histoire des séances.
 - Maquettes (`docs/maquettes/v0.5.html` → `v0.5.png`, 12 écrans) validées par l'utilisateur ; choix : onglet Carnet (Lore | Histoire), Lore en sections, Histoire par séance, photo perso + créatures, photo modifiable en mode édition seulement, Carnet modifiable sans le crayon (D9).
 - Réalisé : modèle v2 (`photo`, `lore`, `histoire`), `rules/notebook.ts` (+ tests), normalisation (photo, dates), migration SQLite 2 (`thumb`), `photo/resize.ts`, composants `PhotoAvatar`, `Thumb`, `NoteList`, écran `NotebookTab`. 40 tests verts ; parcours complet vérifié dans le navigateur (photo perso et créature, miniatures, Lore, séances, mode jeu, rechargement).
+- **v0.5.0 publiée** (signée, versionCode 500).
+- Notice PDF : 11 pages, nouvelles parties 8 (photo) et 9 (Carnet), captures mises à jour (accueil, Carac, identité en édition, invocations, créature).
 - À vérifier sur téléphone : appareil photo / galerie, migration SQLite 2 lors de la mise à jour par-dessus v0.4.0.
