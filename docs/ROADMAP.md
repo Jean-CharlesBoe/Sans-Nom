@@ -45,4 +45,6 @@
 - Icône intégrée (logo « SN » de la compagne de l'utilisateur, adapté à la zone visible des icônes adaptatives, fond crème #f7f0e4) + écran de démarrage assorti ; régénération : `npm run icons` (docs/ICONE.md).
 - **v0.4.0** : icône, écran de démarrage, losanges remplis du bas vers le haut, en-tête sous la barre d'état.
 - Réponse à l'utilisateur : il peut envoyer l'APK de la page Releases à ses amis (jamais l'artefact de debug), ou plus simplement le lien releases/latest.
+- Retour utilisateur : icône et écran de démarrage OK sur son téléphone (v0.4.0).
+- Notice (PDF + INSTALLATION.md) : installation depuis un APK envoyé sur Discord (l'utilisateur diffuse l'app ainsi), lien Releases en alternative, icône affichée.
 - En attente : tests chez les autres joueurs.

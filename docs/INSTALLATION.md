@@ -2,20 +2,21 @@
 
 > Version illustrée avec captures d'écran : [Notice-Sans-Nom.pdf](Notice-Sans-Nom.pdf)
 
-## Première installation
+## Première installation (fichier reçu sur Discord)
 
-1. Sur ton téléphone, ouvre ce lien :
-   **https://github.com/Jean-CharlesBoe/Sans-Nom/releases/latest**
-2. En bas de la page, dans **Assets**, touche le fichier **`SansNom-vX.Y.Z.apk`** pour le télécharger.
-3. Ouvre le fichier téléchargé (notification de téléchargement, ou app **Fichiers** → Téléchargements).
-4. Android demande d'autoriser l'installation depuis ton navigateur (ou depuis Fichiers) : touche **Paramètres**, active **Autoriser depuis cette source**, puis reviens en arrière.
+1. Sur ton téléphone Android, ouvre le message Discord qui contient **`SansNom-vX.Y.Z.apk`**.
+2. Touche le fichier, puis **Télécharger** (⬇) et attends la fin du téléchargement.
+3. Ouvre le fichier : notification « Téléchargement terminé », ou app **Fichiers** → **Téléchargements**.
+4. Android dit qu'il n'est pas autorisé à installer des applis inconnues : touche **Paramètres**, active **Autoriser depuis cette source** (Discord, Fichiers ou navigateur selon le cas), puis reviens en arrière.
 5. Touche **Installer**.
 6. Si Play Protect affiche un avertissement (« application inconnue ») : **Plus d'infos** → **Installer quand même**. C'est normal pour une app qui ne vient pas du Play Store.
-7. L'app **Sans Nom** apparaît avec tes autres applications.
+7. Touche **Ouvrir**. L'app **Sans Nom** (icône « SN ») apparaît avec tes autres applications.
+
+Sans Discord : le même fichier se télécharge sur **https://github.com/Jean-CharlesBoe/Sans-Nom/releases/latest** (partie **Assets**).
 
 ## Mettre à jour
 
-Même chose : télécharge le nouveau fichier `.apk` depuis le même lien et installe-le. Il s'installe **par-dessus** l'ancienne version et **garde tes personnages**.
+Quand une nouvelle version est postée sur Discord, refais les étapes 1 à 3 puis **Mettre à jour**. Elle s'installe **par-dessus** l'ancienne version et **garde tes personnages**.
 
 Ne désinstalle pas l'app pour la mettre à jour : désinstaller efface les fiches.
 
