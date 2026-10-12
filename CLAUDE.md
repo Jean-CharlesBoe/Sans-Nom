@@ -47,13 +47,14 @@ src/
     lists.ts                     compétences, créatures, réordonnancement
     notebook.ts                  Carnet : sections de Lore, séances de l'Histoire, dates
     normalize.ts                 validation/réparation d'un personnage chargé ou importé
-  lib/photo/resize.ts            photo choisie → carré JPEG 512 px + miniature 96 px
+  lib/photo/resize.ts            chargement d'image, zone recadrée → carré JPEG 512 px + miniature 96 px
+  lib/photo/crop.ts              géométrie du recadrage (déplacer, zoomer, bornes), testée
   lib/backup/                    fichier de sauvegarde (format.ts, testé) et partage Android (share.ts)
   lib/storage/repository.ts      contrat CharacterRepository + choix de l'implémentation
   lib/storage/sqliteRepository.ts  SQLite (Android) + migrations du schéma
   lib/storage/webRepository.ts   repli localStorage pour `npm run dev` uniquement
   lib/screens/                   écrans : Home, CharacterScreen (onglets, mode édition, sauvegarde auto), CaracTab, InvocationsTab, CreatureView, NotebookTab
-  lib/components/                blocs réutilisables (perso + créatures) : StatGrid, ResourceDiamond, TempBonuses, IdentityBlock, SkillList, BackupPanel, PhotoAvatar, NoteList
+  lib/components/                blocs réutilisables (perso + créatures) : StatGrid, ResourceDiamond, TempBonuses, IdentityBlock, SkillList, BackupPanel, PhotoAvatar, PhotoCropper, NoteList
   lib/ui/                        primitives : Sheet (fenêtre du bas), NumberInput, Thumb (miniature ronde), back.ts (pile du bouton retour)
 android/                         projet Android généré par Capacitor (versionné)
 assets/ + scripts/icon-layers.mjs  logo source et génération de l'icône (docs/ICONE.md)

@@ -70,3 +70,7 @@ Les noms de variables/fichiers en anglais (`character`, `stats`), les textes aff
 
 ## D10 · 2026-10-11 · Saisie directe des caracs — *validée*
 Retour utilisateur : avec seulement + / −, passer une carac à 40 demande 40 taps. En mode édition, le cercle en pointillés devient un champ numérique (`NumberInput`, validé à la sortie du champ, bornes de `setStatValue`) ; les boutons + / − restent pour les petits ajustements. Les avantages gardent leurs boutons (valeurs petites, −20 à +20).
+
+## D11 · 2026-10-12 · Recadrage de la photo — *validée*
+Retour utilisateur : le recadrage automatique au centre coupait parfois le visage. Après le choix d'une image, un écran de recadrage s'ouvre (`PhotoCropper`) : un doigt déplace, deux doigts zooment autour de leur milieu, un curseur zoome aussi ; un cercle montre le portrait. Géométrie pure et testée dans `src/lib/photo/crop.ts` (l'image couvre toujours le cadre, zoom ×1 à ×5).
+« Recadrer » repart de la photo enregistrée (512 px) : on peut décaler et zoomer, pas élargir. **Pas de stockage de l'image d'origine** (fiche et sauvegarde plus légères) ; pour élargir, on choisit à nouveau la photo. Format de fiche inchangé (pas de nouvelle version de schéma).

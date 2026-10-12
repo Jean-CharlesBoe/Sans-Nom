@@ -1,32 +1,54 @@
 <script lang="ts">
   import type { Photo } from '../model/character'
-  import { photoFromFile } from '../photo/resize'
+  import { loadImage, releaseImage } from '../photo/resize'
   import Sheet from '../ui/Sheet.svelte'
   import Thumb from '../ui/Thumb.svelte'
+  import PhotoCropper from './PhotoCropper.svelte'
 
-  // Portrait rond du personnage ou d'une créature. Voir en grand : toujours. Changer / retirer : mode édition.
+  // Portrait rond du personnage ou d'une créature. Voir en grand : toujours.
+  // Ajouter / changer / recadrer / retirer : mode édition.
   let { owner, editing }: { owner: { nom: string; photo: Photo | null }; editing: boolean } = $props()
 
   let open = $state(false)
   let busy = $state(false)
   let error = $state('')
   let confirmRemove = $state(false)
+  let cropOpen = $state(false)
+  let cropImg = $state<HTMLImageElement | null>(null)
   let input: HTMLInputElement
 
-  async function pick() {
-    const file = input.files?.[0]
-    input.value = ''
-    if (!file) return
+  // Recadrage fermé (validé, annulé, retour) : libérer l'image chargée.
+  $effect(() => {
+    if (cropOpen || !cropImg) return
+    releaseImage(cropImg)
+    cropImg = null
+  })
+
+  async function startCrop(source: File | string) {
     busy = true
     error = ''
     try {
-      owner.photo = await photoFromFile(file)
+      releaseImage(cropImg)
+      cropImg = await loadImage(source)
+      open = false
+      cropOpen = true
     } catch (e) {
       error = e instanceof Error ? e.message : String(e)
       open = true
     } finally {
       busy = false
     }
+  }
+
+  function pick() {
+    const file = input.files?.[0]
+    input.value = ''
+    if (file) startCrop(file)
+  }
+
+  function cropped(p: Photo) {
+    owner.photo = p
+    cropOpen = false
   }
 
   function remove() {
@@ -75,13 +97,20 @@
   {#if error}<p class="error" role="alert">{error}</p>{/if}
   {#if editing}
     <div class="buttons">
-      <button class="primary" onclick={() => input.click()} disabled={busy}>Changer la photo</button>
+      <button class="primary wide" onclick={() => input.click()} disabled={busy}>Changer la photo</button>
       {#if owner.photo}
+        <button onclick={() => owner.photo && startCrop(owner.photo.image)} disabled={busy}>Recadrer</button>
         <button class="danger" onclick={remove}>{confirmRemove ? 'Confirmer' : 'Retirer'}</button>
       {/if}
     </div>
   {:else}
-    <p class="note">Changer ou retirer la photo : passer en mode édition (crayon).</p>
+    <p class="note">Changer, recadrer ou retirer la photo : passer en mode édition (crayon).</p>
+  {/if}
+</Sheet>
+
+<Sheet bind:open={cropOpen} title="Recadrer la photo">
+  {#if cropImg}
+    <PhotoCropper img={cropImg} onDone={cropped} onCancel={() => (cropOpen = false)} />
   {/if}
 </Sheet>
 
@@ -125,7 +154,7 @@
     gap: 8px;
     margin-top: 12px;
   }
-  .buttons button:only-child {
+  .wide {
     grid-column: 1 / -1;
   }
   .note {

@@ -60,7 +60,7 @@ Deux sous-onglets **Lore | Histoire**.
 
 ### 3.5 Photo (v0.5)
 
-Portrait rond du personnage (onglet Carac) et de chaque créature ; miniature dans la liste d'accueil et dans la liste des créatures (initiale à défaut). Un tap montre la photo en grand. **Ajouter, changer ou retirer : en mode édition uniquement.** Photo recadrée en carré et réduite (512 px, JPEG), incluse dans la sauvegarde.
+Portrait rond du personnage (onglet Carac) et de chaque créature ; miniature dans la liste d'accueil et dans la liste des créatures (initiale à défaut). Un tap montre la photo en grand. **Ajouter, changer, recadrer ou retirer : en mode édition uniquement.** Après le choix d'une image, écran de recadrage (glisser, zoom à deux doigts ou curseur, cercle du portrait) ; « Recadrer » reprend la photo actuelle. Photo carrée réduite (512 px, JPEG), incluse dans la sauvegarde.
 
 ## 4. Règles du jeu
 
